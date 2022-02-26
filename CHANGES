@@ -1,0 +1,21 @@
+# Changelog
+
+## current
+
+- _Add your latest changes from PRs here_
+
+## g 0.0.0 (2022-02-26)
+
+### Compatibility
+
+-
+
+### Documentation
+
+- sphinx, furo theme, sphinx-autobuild
+
+### Development
+
+- Setup CI, codecov, cloudfront, s3
+
+.. vim: set filetype=markdown:

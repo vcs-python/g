@@ -4,7 +4,7 @@
 [![Docs](https://github.com/vcs-python/g/workflows/Publish%20Docs/badge.svg)](https://github.com/vcs-python/g/actions?query=workflow%3A%22Publish+Docs%22)
 [![Build Status](https://github.com/vcs-python/g/workflows/tests/badge.svg)](https://github.com/vcs-python/g/actions?query=workflow%3A%22tests%22)
 [![Code Coverage](https://codecov.io/gh/vcs-python/g/branch/master/graph/badge.svg)](https://codecov.io/gh/vcs-python/g)
-![License](https://img.shields.io/github/license/vcs-python/g.svg)
+[![License](https://img.shields.io/github/license/vcs-python/g.svg)](https://github.com/vcs-python/g/blob/master/LICENSE)
 
 Shortcut / powertool for developers to access current repos' vcs, whether it's
 svn, hg, mercurial.
@@ -19,7 +19,7 @@ $ g
 
 # Credits
 
-2021-12-05: Thanks to [John Shanahan](https://github.com/shanahanjrs) ([@_shanahanjrs](https://twitter.com/_shanahanjrs)) for giving g use [g](https://pypi.org/project/g/)
+2021-12-05: Thanks to [John Shanahan](https://github.com/shanahanjrs) ([@\_shanahanjrs](https://twitter.com/_shanahanjrs)) for giving g use [g](https://pypi.org/project/g/)
 
 # Donations
 

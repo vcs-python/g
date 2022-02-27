@@ -6,15 +6,15 @@
 
 ## g 0.0.0 (2022-02-26)
 
-### Compatibility
+**Compatibility**
 
 -
 
-### Documentation
+**Documentation**
 
 - sphinx, furo theme, sphinx-autobuild
 
-### Development
+**Development**
 
 - Setup CI, codecov, cloudfront, s3
 

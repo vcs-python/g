@@ -23,13 +23,12 @@ extensions = [
     "sphinxext.opengraph",
     "myst_parser",
 ]
+myst_enable_extensions = ["colon_fence", "substitution", "replacements"]
 
 # app setup hook
 def setup(app):
     pass
 
-
-myst_enable_extensions = ["substitution", "replacements"]
 
 issues_github_path = about["__github__"].replace("https://github.com/", "")
 templates_path = ["_templates"]
@@ -50,8 +49,11 @@ pygments_style = "monokai"
 pygments_dark_style = "monokai"
 
 html_favicon = "_static/favicon.ico"
-html_theme_path = []
+html_static_path = ["_static"]
+html_css_files = ["css/custom.css"]
+html_extra_path = ["manifest.json"]
 html_theme = "furo"
+html_theme_path = []
 html_theme_options = {
     "light_logo": "img/g.svg",
     "dark_logo": "img/g-dark.svg",
@@ -77,10 +79,6 @@ html_sidebars = {
         "sidebar/scroll-end.html",
     ]
 }
-
-html_static_path = ["_static"]
-html_css_files = ["css/custom.css"]
-html_extra_path = ["manifest.json"]
 
 # sphinxext.opengraph
 ogp_site_url = about["__docs__"]

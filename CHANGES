@@ -1,14 +1,27 @@
 # Changelog
 
-## current
+To install the unreleased g version, see [developmental releases](https://g.git-pull.com/quickstart.html#developmental-releases).
+
+[pip](https://pip.pypa.io/en/stable/):
+
+```console
+$ pip install --user --upgrade --pre g
+```
+
+[pipx](https://pypa.github.io/pipx/docs/):
+
+```console
+$ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
+// Usage: g@next --help
+```
+
+## current - unrelased
 
 - _Add your latest changes from PRs here_
 
 ## g 0.0.0 (2022-02-26)
 
 **Compatibility**
-
--
 
 **Documentation**
 

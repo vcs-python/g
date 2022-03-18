@@ -5,6 +5,12 @@
 ```
 
 ```{toctree}
+:hidden:
+
+quickstart
+```
+
+```{toctree}
 :caption: Project
 :hidden:
 

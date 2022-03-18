@@ -13,7 +13,7 @@ $ pip install --user g
 Upgrading:
 
 ```console
-$ pip install --user --user g
+$ pip install --user --upgrade g
 ```
 
 (developmental-releases)=

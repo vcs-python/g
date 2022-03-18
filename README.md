@@ -19,6 +19,24 @@ $ pip install --user g
 $ g
 ```
 
+### Developmental releases
+
+You can test the unpublished version of g before its released.
+
+- [pip](https://pip.pypa.io/en/stable/):
+
+  ```console
+  $ pip install --user --upgrade --pre g
+  ```
+
+- [pipx](https://pypa.github.io/pipx/docs/):
+
+  ```console
+  $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
+  ```
+
+  Then use `g@next --help`.
+
 # Credits
 
 2021-12-05: Thanks to [John Shanahan](https://github.com/shanahanjrs) ([@\_shanahanjrs](https://twitter.com/_shanahanjrs)) for giving g use [g](https://pypi.org/project/g/)

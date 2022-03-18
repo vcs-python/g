@@ -9,11 +9,11 @@
 Shortcut / powertool for developers to access current repos' vcs, whether it's
 svn, hg, mercurial.
 
-```sh
+```console
 $ pip install --user g
 ```
 
-```sh
+```console
 $ g
 ```
 

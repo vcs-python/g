@@ -2,8 +2,8 @@
 
 Passthrough to your current directories vcs (or reach for it with --cwd)
 
-[![Python Package](https://img.shields.io/pypi/v/g.svg)](http://badge.fury.io/py/g)
-[![Docs](https://github.com/vcs-python/g/workflows/Publish%20Docs/badge.svg)](https://github.com/vcs-python/g/actions?query=workflow%3A%22Publish+Docs%22)
+[![Python Package](https://img.shields.io/pypi/v/g.svg)](https://pypi.org/project/g/)
+[![Docs](https://github.com/vcs-python/g/workflows/Publish%20Docs/badge.svg)](https://g.git-pull.com)
 [![Build Status](https://github.com/vcs-python/g/workflows/tests/badge.svg)](https://github.com/vcs-python/g/actions?query=workflow%3A%22tests%22)
 [![Code Coverage](https://codecov.io/gh/vcs-python/g/branch/master/graph/badge.svg)](https://codecov.io/gh/vcs-python/g)
 [![License](https://img.shields.io/github/license/vcs-python/g.svg)](https://github.com/vcs-python/g/blob/master/LICENSE)

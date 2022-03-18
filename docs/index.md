@@ -5,9 +5,10 @@
 ```
 
 ```{toctree}
-:maxdepth: 2
+:caption: Project
+:hidden:
 
 developing
 history
-
+GitHub <https://github.com/vcs-python/g>
 ```

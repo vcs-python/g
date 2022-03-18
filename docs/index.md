@@ -1,7 +1,5 @@
 (index)=
 
-# g - access the vcs of current directory (or reach for it)
-
 ```{include} ../README.md
 
 ```

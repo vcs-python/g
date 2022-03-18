@@ -1,4 +1,6 @@
-`g` - passthrough to your current directories vcs (or reach with --cwd)
+# `$ g`
+
+Passthrough to your current directories vcs (or reach for it with --cwd)
 
 [![Python Package](https://img.shields.io/pypi/v/g.svg)](http://badge.fury.io/py/g)
 [![Docs](https://github.com/vcs-python/g/workflows/Publish%20Docs/badge.svg)](https://github.com/vcs-python/g/actions?query=workflow%3A%22Publish+Docs%22)

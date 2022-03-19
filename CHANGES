@@ -21,13 +21,11 @@ $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
 
 ## g 0.0.0 (2022-02-26)
 
-**Compatibility**
-
-**Documentation**
+### Documentation
 
 - sphinx, furo theme, sphinx-autobuild
 
-**Development**
+### Development
 
 - Setup CI, codecov, cloudfront, s3
 

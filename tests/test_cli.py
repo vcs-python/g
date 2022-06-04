@@ -21,7 +21,7 @@ def get_output(*args, **kwargs):
         (["g", "--help"], "git --help"),
     ],
 )
-def test_command_line(capsys, argv_args, expect_cmd):
+def test_command_line(capsys: pytest.CaptureFixture[str], argv_args, expect_cmd):
     from g import sys as gsys
 
     with patch.object(gsys, "argv", argv_args):

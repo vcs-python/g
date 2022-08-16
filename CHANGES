@@ -15,9 +15,15 @@ $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 
-## g 0.0.1 (unreleased)
+## g 0.0.2 (unreleased)
 
 - _Add your latest changes from PRs here_
+
+## g 0.0.1 (2022-08-17)
+
+### Tests
+
+Tests now pass
 
 ### Development
 
@@ -31,7 +37,7 @@ Infrastructure updates for static type checking and doctest examples.
 
   [doctests]: https://docs.python.org/3/library/doctest.html
 
-- Initial [mypy] validation, via #2
+- Initial [mypy] validation, via #2, including `--strict` typings
 
   [mypy]: https://github.com/python/mypy
 

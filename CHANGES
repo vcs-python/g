@@ -15,9 +15,30 @@ $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 
-## current - unrelased
+## g 0.0.1 (unreleased)
 
 - _Add your latest changes from PRs here_
+
+### Development
+
+Infrastructure updates for static type checking and doctest examples.
+
+- Update development packages (black, isort)
+- Add .tool-versions, .python-version
+- Run code through black w/o `--skip-string-normalization`
+
+- Initial [doctests] support added, via #2
+
+  [doctests]: https://docs.python.org/3/library/doctest.html
+
+- Initial [mypy] validation, via #2
+
+  [mypy]: https://github.com/python/mypy
+
+- CI (tests, docs): Improve caching of python dependencies via
+  `action/setup-python`'s v3/4's new poetry caching, via #2
+
+- CI (docs): Skip if no `PUBLISH` condition triggered, via #2
 
 ## g 0.0.0 (2022-02-26)
 

@@ -23,12 +23,12 @@ DEFAULT = object()
 
 
 def run(
-    cmd: t.Union[str, bytes, PathLike[str], PathLike[bytes], object] = DEFAULT,
+    cmd: t.Union[str, bytes, "PathLike[str]", "PathLike[bytes]", object] = DEFAULT,
     cmd_args: object = DEFAULT,
     wait: bool = False,
     *args: object,
     **kwargs: t.Any
-) -> t.Optional[subprocess.Popen[str]]:
+) -> t.Optional["subprocess.Popen[str]"]:
     # Interpret default kwargs lazily for mockability of argv
     if cmd is DEFAULT:
         cmd = find_repo_type(pathlib.Path.cwd())

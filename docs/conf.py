@@ -1,8 +1,12 @@
 # flake8: noqa E501
+import inspect
 import os
 import sys
 import typing as t
+from os.path import dirname, relpath
 from pathlib import Path
+
+import g
 
 # Get the project root dir, which is the parent dir of this
 cwd = Path(__file__).parent
@@ -31,11 +35,6 @@ extensions = [
     "myst_parser",
 ]
 myst_enable_extensions = ["colon_fence", "substitution", "replacements"]
-
-# app setup hook
-def setup(app):
-    pass
-
 
 issues_github_path = about["__github__"].replace("https://github.com/", "")
 templates_path = ["_templates"]
@@ -145,13 +144,9 @@ intersphinx_mapping = {
 }
 
 
-def linkcode_resolve(domain, info):  # NOQA: C901
-    import inspect
-    import sys
-    from os.path import dirname, relpath
-
-    import g
-
+def linkcode_resolve(
+    domain: str, info: t.Dict[str, str]
+) -> t.Union[None, str]:  # NOQA: C901
     """
     Determine the URL corresponding to Python object
 
@@ -184,7 +179,8 @@ def linkcode_resolve(domain, info):  # NOQA: C901
     except AttributeError:
         pass
     else:
-        obj = unwrap(obj)
+        if callable(obj):
+            obj = unwrap(obj)
 
     try:
         fn = inspect.getsourcefile(obj)
@@ -206,14 +202,14 @@ def linkcode_resolve(domain, info):  # NOQA: C901
     fn = relpath(fn, start=dirname(g.__file__))
 
     if "dev" in about["__version__"]:
-        return "%s/blob/master/%s/%s%s" % (
+        return "{}/blob/master/{}/{}{}".format(
             about["__github__"],
             about["__package_name__"],
             fn,
             linespec,
         )
     else:
-        return "%s/blob/v%s/%s/%s%s" % (
+        return "{}/blob/v{}/{}/{}{}".format(
             about["__github__"],
             about["__version__"],
             about["__package_name__"],

@@ -1,18 +1,23 @@
 # flake8: noqa E501
+import inspect
 import os
 import sys
+import typing as t
+from os.path import dirname, relpath
 from pathlib import Path
 
+import g
+
 # Get the project root dir, which is the parent dir of this
-cwd = Path.cwd()
+cwd = Path(__file__).parent
 project_root = cwd.parent
 
 sys.path.insert(0, str(project_root))
 sys.path.insert(0, str(cwd / "_ext"))
 
 # package data
-about = {}
-with open("../g/__about__.py") as fp:
+about: t.Dict[str, str] = {}
+with open(project_root / "g" / "__about__.py") as fp:
     exec(fp.read(), about)
 
 extensions = [
@@ -30,11 +35,6 @@ extensions = [
     "myst_parser",
 ]
 myst_enable_extensions = ["colon_fence", "substitution", "replacements"]
-
-# app setup hook
-def setup(app):
-    pass
-
 
 issues_github_path = about["__github__"].replace("https://github.com/", "")
 templates_path = ["_templates"]
@@ -59,8 +59,8 @@ html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
 html_extra_path = ["manifest.json"]
 html_theme = "furo"
-html_theme_path = []
-html_theme_options = {
+html_theme_path: t.List[str] = []
+html_theme_options: t.Dict[str, t.Union[str, t.List[t.Dict[str, str]]]] = {
     "light_logo": "img/g.svg",
     "dark_logo": "img/g-dark.svg",
     "footer_icons": [
@@ -144,13 +144,9 @@ intersphinx_mapping = {
 }
 
 
-def linkcode_resolve(domain, info):  # NOQA: C901
-    import inspect
-    import sys
-    from os.path import dirname, relpath
-
-    import g
-
+def linkcode_resolve(
+    domain: str, info: t.Dict[str, str]
+) -> t.Union[None, str]:  # NOQA: C901
     """
     Determine the URL corresponding to Python object
 
@@ -183,7 +179,8 @@ def linkcode_resolve(domain, info):  # NOQA: C901
     except AttributeError:
         pass
     else:
-        obj = unwrap(obj)
+        if callable(obj):
+            obj = unwrap(obj)
 
     try:
         fn = inspect.getsourcefile(obj)
@@ -205,14 +202,14 @@ def linkcode_resolve(domain, info):  # NOQA: C901
     fn = relpath(fn, start=dirname(g.__file__))
 
     if "dev" in about["__version__"]:
-        return "%s/blob/master/%s/%s%s" % (
+        return "{}/blob/master/{}/{}{}".format(
             about["__github__"],
             about["__package_name__"],
             fn,
             linespec,
         )
     else:
-        return "%s/blob/v%s/%s/%s%s" % (
+        return "{}/blob/v{}/{}/{}{}".format(
             about["__github__"],
             about["__version__"],
             about["__package_name__"],

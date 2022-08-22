@@ -11,7 +11,7 @@ $ pip install --user --upgrade --pre g
 [pipx](https://pypa.github.io/pipx/docs/):
 
 ```console
-$ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
+$ pipx install --suffix=@next g --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 

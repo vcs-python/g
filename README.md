@@ -32,7 +32,7 @@ You can test the unpublished version of g before its released.
 - [pipx](https://pypa.github.io/pipx/docs/):
 
   ```console
-  $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
+  $ pipx install --suffix=@next g --pip-args '\--pre' --force
   ```
 
   Then use `g@next --help`.

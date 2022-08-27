@@ -19,6 +19,10 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - _Add your latest changes from PRs here_
 
+### Documentation
+
+- Move CHANGES to sphinx-autoissues, #3
+
 ## g 0.0.1 (2022-08-17)
 
 ### Tests

@@ -58,6 +58,7 @@ python = "^3.7"
 ### Docs ###
 sphinx = "*"
 furo = "*"
+gp-libs = "*"
 sphinx-autodoc-typehints = "*"
 sphinx-autobuild = "*"
 sphinx-inline-tabs = { version = "*", python = "^3.7" }
@@ -101,6 +102,7 @@ docs = [
   "sphinx-autoissues",
   "myst_parser",
   "furo",
+  "gp-libs",
 ]
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]

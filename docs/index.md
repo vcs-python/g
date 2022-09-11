@@ -14,6 +14,7 @@ quickstart
 :caption: Project
 :hidden:
 
+api
 developing
 history
 GitHub <https://github.com/vcs-python/g>

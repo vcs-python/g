@@ -26,7 +26,11 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 ### Documentation
 
-- Move CHANGES to sphinx-autoissues, #3
+- Render changelog in [`linkify_issues`] (#6)
+- Fix Table of contents rendering with sphinx autodoc with [`sphinx_toctree_autodoc_fix`] (#6)
+
+[`linkify_issues`]: https://gp-libs.git-pull.com/linkify_issues/
+[`sphinx_toctree_autodoc_fix`]: https://gp-libs.git-pull.com/sphinx_toctree_autodoc_fix/
 
 ## g 0.0.1 (2022-08-17)
 

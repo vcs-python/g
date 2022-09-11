@@ -27,14 +27,20 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.napoleon",
     "sphinx.ext.linkcode",
-    "sphinx_autoissues",
     "sphinx_inline_tabs",
     "sphinx_copybutton",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
     "myst_parser",
+    "sphinx_toctree_autodoc_fix",
+    "linkify_issues",
 ]
-myst_enable_extensions = ["colon_fence", "substitution", "replacements"]
+myst_enable_extensions = [
+    "colon_fence",
+    "substitution",
+    "replacements",
+    "strikethrough",
+]
 
 templates_path = ["_templates"]
 
@@ -86,9 +92,8 @@ html_sidebars = {
     ]
 }
 
-# sphinx-autoissues
-issuetracker = "github"
-issuetracker_project = about["__github__"].replace("https://github.com/", "")
+# linkify_issues
+issue_url_tpl = "https://github.com/vcs-python/g/issues/{issue_id}"
 
 # sphinxext.opengraph
 ogp_site_url = about["__docs__"]

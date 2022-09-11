@@ -66,7 +66,6 @@ sphinxext-opengraph = "*"
 sphinx-copybutton = "*"
 sphinxext-rediraffe = "*"
 myst_parser = "*"
-sphinx-autoissues = "*"
 docutils = "~0.18.0"
 
 ### Testing ###
@@ -99,7 +98,6 @@ docs = [
   "sphinxext-opengraph",
   "sphinx-inline-tabs",
   "sphinxext-rediraffe",
-  "sphinx-autoissues",
   "myst_parser",
   "furo",
   "gp-libs",

@@ -21,7 +21,7 @@ classifiers = [
   "Topic :: System :: Shells",
 ]
 packages = [
-  { include = "g" },
+  { include = "*", from = "src" },
 ]
 include = [
   { path = "tests", format = "sdist" },

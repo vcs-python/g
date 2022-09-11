@@ -15,9 +15,13 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 
-## g 0.0.2 (unreleased)
+## g 0.0.3 (unreleased)
 
 - _Add your latest changes from PRs here_
+
+## g 0.0.2 (2022-09-11)
+
+**Maintenance only release, no bug fixes or features**
 
 ### Development
 

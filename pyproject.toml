@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "g"
-version = "0.0.2"
+version = "0.0.3a0"
 description = "cli command to easily sync current directory"
 license = "MIT"
 authors = ["Tony Narlock <tony@git-pull.com>"]

@@ -19,6 +19,13 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - _Add your latest changes from PRs here_
 
+### Infrastructure
+
+- CI speedups (#8)
+
+  - Split out release to separate job so the PyPI Upload docker image isn't pulled on normal runs
+  - Clean up CodeQL
+
 ## g 0.0.2 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**

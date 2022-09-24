@@ -28,6 +28,10 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - Poetry: Bump 1.1.x to 1.2.x
 
+### Packaging
+
+- Remove `.tmuxp-before-script.sh` (was used in `tmuxp.yaml`'s `before_script`)
+
 ## g 0.0.2 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**

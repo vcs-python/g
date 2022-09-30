@@ -96,7 +96,7 @@ html_sidebars = {
 }
 
 # linkify_issues
-issue_url_tpl = "https://github.com/vcs-python/g/issues/{issue_id}"
+issue_url_tpl = about["__github__"] + "/issues/{issue_id}"
 
 # sphinx.ext.autodoc
 toc_object_entries_show_parents = "hide"

@@ -83,13 +83,13 @@ black = "*"
 isort = "*"
 
 ### Lint ###
-flake8 = "*"
+flake8 = [
+  { version = "*", python = "^3.7" },
+  { version = ">=5", python = "^3.8" },
+]
 flake8-bugbear = "*"
 flake8-comprehensions = "*"
 mypy = "*"
-
-### Quirks ###
-importlib-metadata = "<5"  # https://github.com/PyCQA/flake8/issues/1701
 
 [tool.poetry.extras]
 docs = [

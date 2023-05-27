@@ -78,10 +78,8 @@ codecov = "*"
 coverage = "*"
 pytest-cov = "*"
 
-### Format ###
-ruff = "*"
-
 ### Lint ###
+ruff = "*"
 mypy = "*"
 
 [tool.poetry.extras]
@@ -104,6 +102,10 @@ lint = ["ruff", "mypy"]
 
 [tool.mypy]
 strict = true
+files = [
+  "src/",
+  "tests/",
+]
 
 [build-system]
 requires = ["poetry_core>=1.0.0", "setuptools>60"]

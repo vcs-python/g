@@ -19,6 +19,17 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - _Add your latest changes from PRs here_
 
+### Internal improvements
+
+- Move formatting, import sorting, and linting to [ruff].
+
+  This rust-based checker has dramatically improved performance. Linting and
+  formatting can be done almost instantly.
+
+  This change replaces black, isort, flake8 and flake8 plugins.
+
+[ruff]: https://ruff.rs
+
 ### Infrastructure
 
 - CI speedups (#8)

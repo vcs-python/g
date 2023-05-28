@@ -79,6 +79,7 @@ coverage = "*"
 pytest-cov = "*"
 
 ### Lint ###
+black = "*"
 ruff = "*"
 mypy = "*"
 
@@ -98,7 +99,7 @@ docs = [
 ]
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]
-lint = ["ruff", "mypy"]
+lint = ["black", "ruff", "mypy"]
 
 [tool.mypy]
 strict = true

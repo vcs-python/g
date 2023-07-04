@@ -27,6 +27,8 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
   formatting can be done almost instantly.
 
   This change replaces isort, flake8 and flake8 plugins.
+
+  - Add additional ruff linters in #11
 - poetry: 1.4.0 -> 1.5.0
 
   See also: https://github.com/python-poetry/poetry/releases/tag/1.5.0

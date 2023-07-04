@@ -11,8 +11,7 @@ def get_output(
     *args: t.Any, **kwargs: t.Any
 ) -> t.Union[subprocess.CalledProcessError, t.Any]:
     try:
-        result = subprocess.check_output(*args, **kwargs)
-        return result
+        return subprocess.check_output(*args, **kwargs)
     except subprocess.CalledProcessError as exc:
         return exc.output
 

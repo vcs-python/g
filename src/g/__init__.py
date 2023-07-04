@@ -11,11 +11,10 @@ vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 
 
 def find_repo_type(path: t.Union[pathlib.Path, str]) -> t.Optional[str]:
-    for path in list(pathlib.Path(path).parents) + [pathlib.Path(path)]:
-        for p in path.iterdir():
-            if p.is_dir():
-                if p.name in vcspath_registry:
-                    return vcspath_registry[p.name]
+    for _path in [*list(pathlib.Path(path).parents), pathlib.Path(path)]:
+        for p in _path.iterdir():
+            if p.is_dir() and p.name in vcspath_registry:
+                return vcspath_registry[p.name]
     return None
 
 

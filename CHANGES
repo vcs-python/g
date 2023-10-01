@@ -19,6 +19,10 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - _Add your latest changes from PRs here_
 
+### Packaging
+
+- Move pytest configuration to `pyproject.toml` (#14)
+
 ### Internal improvements
 
 - Move formatting, import sorting, and linting to [ruff].

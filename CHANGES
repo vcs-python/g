@@ -22,6 +22,9 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 ### Packaging
 
 - Move pytest configuration to `pyproject.toml` (#14)
+- Poetry 1.6.1 -> 1.7.0
+
+  See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
 
 ### Internal improvements
 

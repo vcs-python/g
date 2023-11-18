@@ -26,7 +26,7 @@ def run(
     cmd_args: object = DEFAULT,
     wait: bool = False,
     *args: object,
-    **kwargs: t.Any
+    **kwargs: t.Any,
 ) -> t.Optional["subprocess.Popen[str]"]:
     # Interpret default kwargs lazily for mockability of argv
     if cmd is DEFAULT:

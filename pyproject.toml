@@ -54,7 +54,7 @@ g = 'g:run'
 [tool.poetry.dependencies]
 python = "^3.8"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.docs.dependencies]
 ### Docs ###
 sphinx = "*"
 furo = "*"
@@ -68,37 +68,22 @@ sphinxext-rediraffe = "*"
 myst_parser = ">=0.18.1"
 docutils = "*"
 
+[tool.poetry.group.test.dependencies]
 ### Testing ###
 pytest = "*"
 pytest-rerunfailures = "*"
 pytest-watcher = "*"
 
+[tool.poetry.group.coverage.dependencies]
 ### Coverage ###
 codecov = "*"
 coverage = "*"
 pytest-cov = "*"
 
+[tool.poetry.group.lint.dependencies]
 ### Lint ###
 ruff = "*"
 mypy = "*"
-
-[tool.poetry.extras]
-docs = [
-  "docutils",
-  "sphinx",
-  "sphinx-autodoc-typehints",
-  "sphinx-autobuild",
-  "sphinx-copybutton",
-  "sphinxext-opengraph",
-  "sphinx-inline-tabs",
-  "sphinxext-rediraffe",
-  "myst_parser",
-  "furo",
-  "gp-libs",
-]
-test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
-coverage = ["codecov", "coverage", "pytest-cov"]
-lint = ["ruff", "mypy"]
 
 [tool.mypy]
 strict = true

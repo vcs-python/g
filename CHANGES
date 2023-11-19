@@ -22,9 +22,22 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 ### Packaging
 
 - Move pytest configuration to `pyproject.toml` (#14)
-- Poetry 1.6.1 -> 1.7.0
+- Poetry 1.4.0 -> 1.7.0
 
   See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
+
+- Packaging (poetry): Fix development dependencies
+
+  Per [Poetry's docs on managing dependencies] and `poetry check`, we had it wrong: Instead of using extras, we should create these:
+
+  ```toml
+  [tool.poetry.group.[group-name].dependencies]
+  dev-dependency = "1.0.0"
+  ```
+
+  Which we now do.
+
+  [Poetry's docs on managing dependencies]: https://python-poetry.org/docs/master/managing-dependencies/
 
 ### Internal improvements
 
@@ -43,9 +56,11 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
     [`ruff format`]: https://docs.astral.sh/ruff/formatter/
 
-- poetry: 1.4.0 -> 1.5.0
+- CI: Update action packages to fix warnings
 
-  See also: https://github.com/python-poetry/poetry/releases/tag/1.5.0
+  - [dorny/paths-filter]: 2.7.0 -> 2.11.1
+
+    [dorny/paths-filter]: https://github.com/dorny/paths-filter
 
 [ruff]: https://ruff.rs
 

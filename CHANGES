@@ -62,6 +62,8 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
     [dorny/paths-filter]: https://github.com/dorny/paths-filter
 
+- CI: Move CodeQL from advanced configuration file to GitHub's default
+
 [ruff]: https://ruff.rs
 
 ### Infrastructure

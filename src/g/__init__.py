@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Package for g."""
 import pathlib
 import subprocess
 import sys
@@ -28,6 +29,7 @@ def run(
     *args: object,
     **kwargs: t.Any,
 ) -> t.Optional["subprocess.Popen[str]"]:
+    """CLI Entrypoint for g, overlay for current directory's VCS utility."""
     # Interpret default kwargs lazily for mockability of argv
     if cmd is DEFAULT:
         cmd = find_repo_type(pathlib.Path.cwd())

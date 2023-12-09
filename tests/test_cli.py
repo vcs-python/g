@@ -1,3 +1,4 @@
+"""Tests for g's CLI package."""
 import subprocess
 import typing as t
 from unittest.mock import patch
@@ -10,6 +11,7 @@ from g import run
 def get_output(
     *args: t.Any, **kwargs: t.Any
 ) -> t.Union[subprocess.CalledProcessError, t.Any]:
+    """Retrieve output from CLI subprocess, whether success or error."""
     try:
         return subprocess.check_output(*args, **kwargs)
     except subprocess.CalledProcessError as exc:
@@ -28,6 +30,7 @@ def test_command_line(
     argv_args: t.List[str],
     expect_cmd: str,
 ) -> None:
+    """Basic CLI usage."""
     from g import sys as gsys
 
     with patch.object(gsys, "argv", argv_args):

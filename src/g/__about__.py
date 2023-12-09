@@ -2,7 +2,7 @@
 __title__ = "g"
 __package_name__ = "g"
 __description__ = "cli shortcut for directory's vcs command: git, svn, hg"
-__version__ = "0.0.3a0"
+__version__ = "0.0.3"
 __author__ = "Tony Narlock"
 __github__ = "https://github.com/vcs-python/g"
 __docs__ = "https://g.git-pull.com"

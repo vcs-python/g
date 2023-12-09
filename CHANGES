@@ -73,12 +73,17 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
   - Split out release to separate job so the PyPI Upload docker image isn't pulled on normal runs
   - Clean up CodeQL
 
+- ci: Add pydocstyle rule to ruff (#18)
 - Poetry: Bump 1.1.x to 1.2.x
 
 ### Packaging
 
 - Remove `.tmuxp-before-script.sh` (was used in `tmuxp.yaml`'s `before_script`)
 - Drop Python 3.7 (#13)
+
+### Documentation
+
+- Add docstrings to functions, methods, classes, and packages (#18)
 
 ## g 0.0.2 (2022-09-11)
 

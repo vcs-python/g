@@ -85,6 +85,11 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 - Add docstrings to functions, methods, classes, and packages (#18)
 
+### Bug fixes
+
+- Prevent outputting `<Popen: returncode: 1 args: ['git']>` when running `g`
+  (#19)
+
 ## g 0.0.2 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**

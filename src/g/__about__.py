@@ -1,3 +1,4 @@
+"""Metadata package for g."""
 __title__ = "g"
 __package_name__ = "g"
 __description__ = "cli shortcut for directory's vcs command: git, svn, hg"

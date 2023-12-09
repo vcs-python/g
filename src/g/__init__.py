@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Package for g."""
+import os
 import pathlib
 import subprocess
 import sys
@@ -29,7 +30,14 @@ def run(
     *args: object,
     **kwargs: t.Any,
 ) -> t.Optional["subprocess.Popen[str]"]:
-    """CLI Entrypoint for g, overlay for current directory's VCS utility."""
+    """CLI Entrypoint for g, overlay for current directory's VCS utility.
+
+    Environment variables
+    ---------------------
+    G_IS_TEST :
+        Control whether run() returns proc so function can be tested. If proc was always
+        returned, it would print *<Popen: returncode: 1 args: ['git']>* after command.
+    """
     # Interpret default kwargs lazily for mockability of argv
     if cmd is DEFAULT:
         cmd = find_repo_type(pathlib.Path.cwd())
@@ -44,7 +52,7 @@ def run(
         proc.wait()
     else:
         proc.communicate()
-    if __name__ != "__main__":
+    if os.getenv("G_IS_TEST") and __name__ != "__main__":
         return proc
     return None
 

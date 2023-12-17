@@ -15,7 +15,7 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 
-## g 0.0.3 (2023-12-09)
+## g v0.0.3 (2023-12-09)
 
 - _Add your latest changes from PRs here_
 
@@ -90,7 +90,7 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 - Prevent outputting `<Popen: returncode: 1 args: ['git']>` when running `g`
   (#19)
 
-## g 0.0.2 (2022-09-11)
+## g v0.0.2 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**
 
@@ -108,7 +108,7 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 [`linkify_issues`]: https://gp-libs.git-pull.com/linkify_issues/
 [`sphinx_toctree_autodoc_fix`]: https://gp-libs.git-pull.com/sphinx_toctree_autodoc_fix/
 
-## g 0.0.1 (2022-08-17)
+## g v0.0.1 (2022-08-17)
 
 ### Tests
 

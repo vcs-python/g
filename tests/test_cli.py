@@ -9,7 +9,8 @@ from g import run
 
 
 def get_output(
-    *args: t.Any, **kwargs: t.Any,
+    *args: t.Any,
+    **kwargs: t.Any,
 ) -> t.Union[subprocess.CalledProcessError, t.Any]:
     """Retrieve output from CLI subprocess, whether success or error."""
     try:

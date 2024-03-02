@@ -1,4 +1,5 @@
 """Tests for g's CLI package."""
+
 import subprocess
 import typing as t
 from unittest.mock import patch

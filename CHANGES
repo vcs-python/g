@@ -17,6 +17,11 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 ### Development
 
+- ruff 0.2.2 -> 0.3.0 (#22)
+
+  Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
+
+  See also: https://github.com/astral-sh/ruff/blob/v0.3.0/CHANGELOG.md
 - Strengthen linting (#21)
 
   - Add flake8-commas (COM)

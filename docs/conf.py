@@ -1,5 +1,6 @@
 # flake8: noqa: E501
 """Sphinx configuration for g."""
+
 import contextlib
 import inspect
 import pathlib

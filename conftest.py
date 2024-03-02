@@ -1,4 +1,5 @@
 """Setup pytest for g."""
+
 import pytest
 
 

@@ -8,7 +8,7 @@ import sys
 import typing as t
 from os import PathLike
 
-__all__ = ["sys", "vcspath_registry", "DEFAULT", "run"]
+__all__ = ["DEFAULT", "run", "sys", "vcspath_registry"]
 
 vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 

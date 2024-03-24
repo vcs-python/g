@@ -21,7 +21,7 @@ def get_output(
 
 
 @pytest.mark.parametrize(
-    "argv_args,expect_cmd",
+    ("argv_args", "expect_cmd"),
     [
         (["g"], "git"),
         (["g", "--help"], "git --help"),

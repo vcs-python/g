@@ -49,7 +49,7 @@ class CommandLineTestFixture(t.NamedTuple):
     argv_args: t.List[str]
 
     # results
-    expect_cmd: str
+    expect_cmd: t.Optional[str]
 
 
 TEST_FIXTURES: t.List[CommandLineTestFixture] = [
@@ -69,13 +69,13 @@ TEST_FIXTURES: t.List[CommandLineTestFixture] = [
         test_id="g-cmd-inside-empty-dir",
         env=EnvFlag.Empty,
         argv_args=["g"],
-        expect_cmd="git",
+        expect_cmd=None,
     ),
     CommandLineTestFixture(
         test_id="g-cmd-help-inside-empty-dir",
         env=EnvFlag.Empty,
         argv_args=["g --help"],
-        expect_cmd="git --help",
+        expect_cmd=None,
     ),
 ]
 
@@ -90,7 +90,7 @@ def test_command_line(
     test_id: str,
     env: EnvFlag,
     argv_args: t.List[str],
-    expect_cmd: str,
+    expect_cmd: t.Optional[str],
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: pathlib.Path,
 ) -> None:
@@ -104,8 +104,13 @@ def test_command_line(
 
     with patch.object(gsys, "argv", argv_args):
         proc = run(wait=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        assert proc is not None
-        assert proc.stdout is not None
-        captured = proc.stdout.read()
+        if expect_cmd is None:
+            assert proc is None
+        else:
+            assert proc is not None
+            assert proc.stdout is not None
+            captured = proc.stdout.read()
 
-        assert captured == get_output(expect_cmd, shell=True, stderr=subprocess.STDOUT)
+            assert captured == get_output(
+                expect_cmd, shell=True, stderr=subprocess.STDOUT
+            )

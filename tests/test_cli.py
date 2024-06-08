@@ -65,6 +65,18 @@ TEST_FIXTURES: t.List[CommandLineTestFixture] = [
         argv_args=["g --help"],
         expect_cmd="git --help",
     ),
+    CommandLineTestFixture(
+        test_id="g-cmd-inside-empty-dir",
+        env=EnvFlag.Empty,
+        argv_args=["g"],
+        expect_cmd="git",
+    ),
+    CommandLineTestFixture(
+        test_id="g-cmd-help-inside-empty-dir",
+        env=EnvFlag.Empty,
+        argv_args=["g --help"],
+        expect_cmd="git --help",
+    ),
 ]
 
 

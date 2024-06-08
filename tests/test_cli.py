@@ -27,8 +27,41 @@ def get_output(
         (["g", "--help"], "git --help"),
     ],
 )
+class CommandLineTestFixture(t.NamedTuple):
+    """Test fixture for CLI params, environment, and expected result."""
+
+    # pytest internal
+    test_id: str
+
+    # test data
+    argv_args: t.List[str]
+
+    # results
+    expect_cmd: str
+
+
+TEST_FIXTURES: t.List[CommandLineTestFixture] = [
+    CommandLineTestFixture(
+        test_id="g-cmd-inside-git-dir",
+        argv_args=["g"],
+        expect_cmd="git",
+    ),
+    CommandLineTestFixture(
+        test_id="g-cmd-help-inside-git-dir",
+        argv_args=["g --help"],
+        expect_cmd="git --help",
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    list(CommandLineTestFixture._fields),
+    TEST_FIXTURES,
+    ids=[f.test_id for f in TEST_FIXTURES],
+)
 def test_command_line(
     # capsys: pytest.CaptureFixture[str],
+    test_id: str,
     argv_args: t.List[str],
     expect_cmd: str,
 ) -> None:

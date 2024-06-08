@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Package for g."""
 
+import io
+import logging
 import os
 import pathlib
 import subprocess
@@ -12,8 +14,11 @@ __all__ = ["DEFAULT", "run", "sys", "vcspath_registry"]
 
 vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 
+log = logging.getLogger(__name__)
+
 
 def find_repo_type(path: t.Union[pathlib.Path, str]) -> t.Optional[str]:
+    """Detect repo type looking upwards."""
     for _path in [*list(pathlib.Path(path).parents), pathlib.Path(path)]:
         for p in _path.iterdir():
             if p.is_dir() and p.name in vcspath_registry:
@@ -44,6 +49,13 @@ def run(
         cmd = find_repo_type(pathlib.Path.cwd())
     if cmd_args is DEFAULT:
         cmd_args = sys.argv[1:]
+
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    if cmd is None:
+        msg = "No VCS found in current directory."
+        log.info(msg)
+        return None
 
     assert isinstance(cmd_args, (tuple, list))
     assert isinstance(cmd, (str, bytes, pathlib.Path))

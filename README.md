@@ -1,6 +1,6 @@
 # `$ g`
 
-Passthrough to your current directories vcs (or reach for it with --cwd)
+Passthrough to your current directory's VCS.
 
 [![Python Package](https://img.shields.io/pypi/v/g.svg)](https://pypi.org/project/g/)
 [![Docs](https://github.com/vcs-python/g/workflows/docs/badge.svg)](https://g.git-pull.com)
@@ -8,8 +8,8 @@ Passthrough to your current directories vcs (or reach for it with --cwd)
 [![Code Coverage](https://codecov.io/gh/vcs-python/g/branch/master/graph/badge.svg)](https://codecov.io/gh/vcs-python/g)
 [![License](https://img.shields.io/github/license/vcs-python/g.svg)](https://github.com/vcs-python/g/blob/master/LICENSE)
 
-Shortcut / powertool for developers to access current repos' vcs, whether it's
-svn, hg, mercurial.
+Shortcut / powertool for developers to access current repos' VCS, whether it's
+git, subversion (`svn`), or mercurial (`hg`).
 
 ```console
 $ pip install --user g

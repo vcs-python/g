@@ -1,5 +1,7 @@
 """Tests for g's CLI package."""
 
+import enum
+import pathlib
 import subprocess
 import typing as t
 from unittest.mock import patch
@@ -20,6 +22,13 @@ def get_output(
         return exc.output
 
 
+class EnvFlag(enum.Enum):
+    """Environmental conditions to simulate in test case."""
+
+    Git = "Git"  # Inside a git directory (like this repo)
+    Empty = "Empty"  # Empty directory (e.g. `tmp_path`)
+
+
 @pytest.mark.parametrize(
     ("argv_args", "expect_cmd"),
     [
@@ -33,6 +42,9 @@ class CommandLineTestFixture(t.NamedTuple):
     # pytest internal
     test_id: str
 
+    # env data
+    env: EnvFlag
+
     # test data
     argv_args: t.List[str]
 
@@ -43,11 +55,13 @@ class CommandLineTestFixture(t.NamedTuple):
 TEST_FIXTURES: t.List[CommandLineTestFixture] = [
     CommandLineTestFixture(
         test_id="g-cmd-inside-git-dir",
+        env=EnvFlag.Git,
         argv_args=["g"],
         expect_cmd="git",
     ),
     CommandLineTestFixture(
         test_id="g-cmd-help-inside-git-dir",
+        env=EnvFlag.Git,
         argv_args=["g --help"],
         expect_cmd="git --help",
     ),
@@ -62,11 +76,19 @@ TEST_FIXTURES: t.List[CommandLineTestFixture] = [
 def test_command_line(
     # capsys: pytest.CaptureFixture[str],
     test_id: str,
+    env: EnvFlag,
     argv_args: t.List[str],
     expect_cmd: str,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: pathlib.Path,
 ) -> None:
     """Basic CLI usage."""
     from g import sys as gsys
+
+    if env == EnvFlag.Git:
+        pass
+    elif env == EnvFlag.Empty:
+        monkeypatch.chdir(str(tmp_path))
 
     with patch.object(gsys, "argv", argv_args):
         proc = run(wait=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

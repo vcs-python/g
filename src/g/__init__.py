@@ -18,6 +18,7 @@ log = logging.getLogger(__name__)
 
 
 def find_repo_type(path: t.Union[pathlib.Path, str]) -> t.Optional[str]:
+    """Detect repo type looking upwards."""
     for _path in [*list(pathlib.Path(path).parents), pathlib.Path(path)]:
         for p in _path.iterdir():
             if p.is_dir() and p.name in vcspath_registry:

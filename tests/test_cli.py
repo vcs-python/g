@@ -112,5 +112,7 @@ def test_command_line(
             captured = proc.stdout.read()
 
             assert captured == get_output(
-                expect_cmd, shell=True, stderr=subprocess.STDOUT
+                expect_cmd,
+                shell=True,
+                stderr=subprocess.STDOUT,
             )

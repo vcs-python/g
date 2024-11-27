@@ -25,13 +25,21 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 _Maintenance only, no bug fixes, or new features_
 
-### Development
+### Breaking changes
 
 #### Project and package management: poetry to uv (#30)
 
 [uv] is the new package and project manager for the project, replacing Poetry.
 
 [uv]: https://github.com/astral-sh/uv
+
+#### Build system: poetry to hatchling (#30)
+
+[Build system] moved from [poetry] to [hatchling].
+
+[Build system]: https://packaging.python.org/en/latest/tutorials/packaging-projects/#choosing-a-build-backend
+[poetry]: https://github.com/python-poetry/poetry
+[hatchling]: https://hatch.pypa.io/latest/
 
 ## g 0.0.5 (2024-06-08)
 

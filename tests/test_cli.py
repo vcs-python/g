@@ -46,13 +46,13 @@ class CommandLineTestFixture(t.NamedTuple):
     env: EnvFlag
 
     # test data
-    argv_args: t.List[str]
+    argv_args: list[str]
 
     # results
     expect_cmd: t.Optional[str]
 
 
-TEST_FIXTURES: t.List[CommandLineTestFixture] = [
+TEST_FIXTURES: list[CommandLineTestFixture] = [
     CommandLineTestFixture(
         test_id="g-cmd-inside-git-dir",
         env=EnvFlag.Git,
@@ -89,7 +89,7 @@ def test_command_line(
     # capsys: pytest.CaptureFixture[str],
     test_id: str,
     env: EnvFlag,
-    argv_args: t.List[str],
+    argv_args: list[str],
     expect_cmd: t.Optional[str],
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: pathlib.Path,

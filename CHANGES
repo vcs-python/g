@@ -21,6 +21,14 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Breaking changes (#33)
+
+- Drop Python 3.8
+
+  The minimum version of Python in this and future releases is Python 3.9.
+
+  Python 3.8 reached end-of-life status on October 7th, 2024 (see PEP 569).
+
 ## g 0.0.6 (2024-11-26)
 
 _Maintenance only, no bug fixes, or new features_

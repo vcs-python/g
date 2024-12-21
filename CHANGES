@@ -15,11 +15,15 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 // Usage: g@next --help
 ```
 
-## g 0.0.7 (unreleased)
+## g 0.0.8 (unreleased)
 
 - _Notes on upcoming releases will be added here_
 
 <!-- Maintainers, insert changes / features for the next release here -->
+
+## g 0.0.7 (2024-12-20)
+
+_Maintenance only, no bug fixes, or new features_
 
 ### Breaking changes (#33)
 
@@ -28,6 +32,16 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
   The minimum version of Python in this and future releases is Python 3.9.
 
   Python 3.8 reached end-of-life status on October 7th, 2024 (see PEP 569).
+
+### Development
+
+- Aggressive automated lint fixes via `ruff` (#32)
+
+  via ruff v0.8.4, all automated lint fixes, including unsafe and previews were applied for Python 3.9:
+
+  ```sh
+  ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; ruff format .
+  ```
 
 ## g 0.0.6 (2024-11-26)
 

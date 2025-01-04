@@ -1,7 +1,8 @@
 """Tests for g's CLI package."""
 
+from __future__ import annotations
+
 import enum
-import pathlib
 import subprocess
 import typing as t
 from unittest.mock import patch
@@ -10,11 +11,14 @@ import pytest
 
 from g import run
 
+if t.TYPE_CHECKING:
+    import pathlib
+
 
 def get_output(
     *args: t.Any,
     **kwargs: t.Any,
-) -> t.Union[subprocess.CalledProcessError, t.Any]:
+) -> subprocess.CalledProcessError | t.Any:
     """Retrieve output from CLI subprocess, whether success or error."""
     try:
         return subprocess.check_output(*args, **kwargs)
@@ -49,7 +53,7 @@ class CommandLineTestFixture(t.NamedTuple):
     argv_args: list[str]
 
     # results
-    expect_cmd: t.Optional[str]
+    expect_cmd: str | None
 
 
 TEST_FIXTURES: list[CommandLineTestFixture] = [
@@ -90,7 +94,7 @@ def test_command_line(
     test_id: str,
     env: EnvFlag,
     argv_args: list[str],
-    expect_cmd: t.Optional[str],
+    expect_cmd: str | None,
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: pathlib.Path,
 ) -> None:

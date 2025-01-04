@@ -1,5 +1,7 @@
 """Setup pytest for g."""
 
+from __future__ import annotations
+
 import pytest
 
 

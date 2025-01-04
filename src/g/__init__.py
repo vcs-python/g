@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Package for g."""
 
+from __future__ import annotations
+
 import io
 import logging
 import os
@@ -17,7 +19,7 @@ vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 log = logging.getLogger(__name__)
 
 
-def find_repo_type(path: t.Union[pathlib.Path, str]) -> t.Optional[str]:
+def find_repo_type(path: pathlib.Path | str) -> str | None:
     """Detect repo type looking upwards."""
     for _path in [*list(pathlib.Path(path).parents), pathlib.Path(path)]:
         for p in _path.iterdir():
@@ -30,12 +32,12 @@ DEFAULT = object()
 
 
 def run(
-    cmd: t.Union[str, bytes, "PathLike[str]", "PathLike[bytes]", object] = DEFAULT,
+    cmd: str | bytes | PathLike[str] | PathLike[bytes] | object = DEFAULT,
     cmd_args: object = DEFAULT,
     wait: bool = False,
     *args: object,
     **kwargs: t.Any,
-) -> t.Optional["subprocess.Popen[str]"]:
+) -> subprocess.Popen[str] | None:
     """CLI Entrypoint for g, overlay for current directory's VCS utility.
 
     Environment variables

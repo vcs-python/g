@@ -1,5 +1,7 @@
 """Metadata package for g."""
 
+from __future__ import annotations
+
 __title__ = "g"
 __package_name__ = "g"
 __description__ = "CLI alias for your current directory's VCS command: git, svn, hg"

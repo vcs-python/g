@@ -1,0 +1,231 @@
+[project]
+name = "{{cookiecutter.package_name}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.project_description}}"
+requires-python = ">=3.9,<4.0"
+authors = [
+  {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"}
+]
+license = { text = "{{cookiecutter.license}}" }
+classifiers = [
+  "Development Status :: 4 - Beta",
+  {% if cookiecutter.license == "MIT" %}
+  "License :: OSI Approved :: MIT License",
+  {% elif cookiecutter.license == "BSD-3" %}
+  "License :: OSI Approved :: BSD License",
+  {% elif cookiecutter.license == "GPL-3.0" %}
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  {% elif cookiecutter.license == "Apache-2.0" %}
+  "License :: OSI Approved :: Apache Software License",
+  {% endif %}
+  "Environment :: Web Environment",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX",
+  "Operating System :: MacOS :: MacOS X",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Utilities",
+  "Topic :: System :: Shells",
+]
+packages = [
+  { include = "*", from = "src" },
+]
+{% if cookiecutter.include_tests == "y" %}
+include = [
+  { path = "tests", format = "sdist" },
+]
+{% endif %}
+readme = 'README.md'
+keywords = [
+  "{{cookiecutter.package_name}}",
+  {% for vcs in cookiecutter.supported_vcs.split(',') %}
+  "{{vcs.strip()}}",
+  {% endfor %}
+  "vcs",
+  "cli",
+  "sync",
+  "pull",
+  "update",
+]
+homepage = "https://{{cookiecutter.package_name}}.git-pull.com"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}/issues"
+Documentation = "https://{{cookiecutter.package_name}}.git-pull.com"
+Repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}"
+Changes = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}/blob/master/CHANGES"
+
+[project.scripts]
+{{cookiecutter.package_name}} = '{{cookiecutter.package_name}}:run'
+
+[tool.uv]
+dev-dependencies = [
+  {% if cookiecutter.include_docs == "y" %}
+  # Docs
+  "aafigure",
+  "pillow",
+  "sphinx",
+  "furo",
+  "gp-libs",
+  "sphinx-autobuild",
+  "sphinx-autodoc-typehints",
+  "sphinx-inline-tabs",
+  "sphinxext-opengraph",
+  "sphinx-copybutton",
+  "sphinxext-rediraffe",
+  "sphinx-argparse",
+  "myst-parser",
+  "linkify-it-py",
+  {% endif %}
+  {% if cookiecutter.include_tests == "y" %}
+  # Testing
+  "gp-libs",
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-mock",
+  "pytest-watcher",
+  # Coverage
+  "codecov",
+  "coverage",
+  "pytest-cov",
+  {% endif %}
+  # Lint
+  "ruff",
+  "mypy",
+]
+
+{% if cookiecutter.include_docs == "y" or cookiecutter.include_tests == "y" %}
+[dependency-groups]
+{% if cookiecutter.include_docs == "y" %}
+docs = [
+  "aafigure",
+  "pillow",
+  "sphinx",
+  "furo",
+  "gp-libs",
+  "sphinx-autobuild",
+  "sphinx-autodoc-typehints",
+  "sphinx-inline-tabs",
+  "sphinxext-opengraph",
+  "sphinx-copybutton",
+  "sphinxext-rediraffe",
+  "myst-parser",
+  "linkify-it-py",
+]
+{% endif %}
+{% if cookiecutter.include_tests == "y" %}
+testing = [
+  "gp-libs",
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-mock",
+  "pytest-watcher",
+]
+coverage =[
+  "codecov",
+  "coverage",
+  "pytest-cov",
+]
+{% endif %}
+lint = [
+  "ruff",
+  "mypy",
+]
+{% endif %}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+strict = true
+python_version = "{{cookiecutter.python_version}}"
+files = [
+  "src/",
+  {% if cookiecutter.include_tests == "y" %}
+  "tests/",
+  {% endif %}
+]
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+  "E", # pycodestyle
+  "F", # pyflakes
+  "I", # isort
+  "UP", # pyupgrade
+  "A", # flake8-builtins
+  "B", # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "COM", # flake8-commas
+  "EM", # flake8-errmsg
+  "Q", # flake8-quotes
+  "PTH", # flake8-use-pathlib
+  "SIM", # flake8-simplify
+  "TRY", # Trycertatops
+  "PERF", # Perflint
+  "RUF", # Ruff-specific rules
+  "D", # pydocstyle
+  "FA100",  # future annotations
+]
+ignore = [
+  "COM812", # missing trailing comma, ruff format conflict
+]
+extend-safe-fixes = [
+  "UP006",
+  "UP007",
+]
+pyupgrade.keep-runtime-typing = false
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "{{cookiecutter.package_name}}",
+]
+combine-as-imports = true
+required-imports = [
+  "from __future__ import annotations",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"*/__init__.py" = ["F401"]
+
+{% if cookiecutter.include_tests == "y" %}
+[tool.pytest.ini_options]
+addopts = "--tb=short --no-header --showlocals --doctest-modules"
+doctest_optionflags = "ELLIPSIS NORMALIZE_WHITESPACE"
+testpaths = [
+  "src/{{cookiecutter.package_name}}",
+  "tests",
+  {% if cookiecutter.include_docs == "y" %}
+  "docs",
+  {% endif %}
+]
+filterwarnings = [
+  "ignore:The frontend.Option(Parser)? class.*:DeprecationWarning::",
+]
+
+[tool.pytest-watcher]
+now = true
+ignore_patterns = ["*.py.*.py"]
+
+[tool.coverage.report]
+exclude_also = [
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "from __future__ import annotations",
+]
+{% endif %} 

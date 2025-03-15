@@ -74,6 +74,7 @@ dev-dependencies = [
   # Testing
   "gp-libs",
   "pytest",
+  "pytest-cookies",
   "pytest-rerunfailures",
   "pytest-mock",
   "pytest-watcher",
@@ -105,6 +106,7 @@ docs = [
 testing = [
   "gp-libs",
   "pytest",
+  "pytest-cookies",
   "pytest-rerunfailures",
   "pytest-mock",
   "pytest-watcher",

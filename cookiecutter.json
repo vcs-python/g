@@ -8,7 +8,7 @@
     "author_email": "your.email@example.com",
     "github_username": "username",
     "github_repo": "{{ cookiecutter.project_slug }}",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "python_version": "3.9",
     "license": ["MIT", "BSD-3", "GPL-3.0", "Apache-2.0"],
     "include_docs": ["y", "n"],

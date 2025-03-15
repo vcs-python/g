@@ -142,7 +142,7 @@ if __name__ == "__main__":
             # Create a basic test file
             with open("tests/test_cli.py", "w") as f:
                 f.write("""#!/usr/bin/env python
-"""Test CLI for {{cookiecutter.package_name}}."""
+\"\"\"Test CLI for {{cookiecutter.package_name}}.\"\"\"
 
 from __future__ import annotations
 
@@ -157,7 +157,7 @@ import {{cookiecutter.package_name}}
 
 
 def test_run():
-    """Test run."""
+    \"\"\"Test run.\"\"\"
     # Test that the function doesn't error
     proc = {{cookiecutter.package_name}}.run(cmd="echo", cmd_args=["hello"])
     assert proc is None
@@ -216,10 +216,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python ${{ "{{" }} matrix.python-version {{ "}}" }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ "{{" }} matrix.python-version {{ "}}" }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip

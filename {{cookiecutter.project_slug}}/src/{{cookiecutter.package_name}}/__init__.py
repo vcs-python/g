@@ -14,6 +14,7 @@ from os import PathLike
 
 __all__ = ["DEFAULT", "run", "sys", "vcspath_registry"]
 
+# Generated from the supported VCS list in cookiecutter.json
 {% set vcs_dict = {} %}
 {% for vcs in cookiecutter.supported_vcs.split(',') %}
 {% if vcs.strip() == 'git' %}

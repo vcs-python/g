@@ -54,8 +54,8 @@ Changes = "https://github.com/vcs-python/g/blob/master/CHANGES"
 [project.scripts]
 g = 'g:run'
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   # Docs
   "aafigure",
   "pillow",
@@ -86,7 +86,6 @@ dev-dependencies = [
   "mypy",
 ]
 
-[dependency-groups]
 docs = [
   "aafigure",
   "pillow",

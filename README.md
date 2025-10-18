@@ -15,6 +15,24 @@ git, subversion (`svn`), or mercurial (`hg`).
 $ pip install --user g
 ```
 
+Or install with [uv](https://docs.astral.sh/uv/):
+
+```console
+$ uv tool install g
+```
+
+Working inside a uv-managed project:
+
+```console
+$ uv add g
+```
+
+For one-off use without installing globally:
+
+```console
+$ uvx g
+```
+
 ```console
 $ g
 ```
@@ -27,6 +45,20 @@ You can test the unpublished version of g before its released.
 
   ```console
   $ pip install --user --upgrade --pre g
+  ```
+
+- [uv](https://docs.astral.sh/uv/):
+
+  ```console
+  $ uv tool install g
+  ```
+
+  ```console
+  $ uv add g
+  ```
+
+  ```console
+  $ uvx g
   ```
 
 - [pipx](https://pypa.github.io/pipx/docs/):

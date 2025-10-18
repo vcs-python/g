@@ -10,10 +10,38 @@ For latest official version:
 $ pip install --user g
 ```
 
+Or install with [uv](https://docs.astral.sh/uv/):
+
+```console
+$ uv tool install g
+```
+
+Add g to a uv-managed project:
+
+```console
+$ uv add g
+```
+
+Run g once without installing globally:
+
+```console
+$ uvx g
+```
+
 Upgrading:
 
 ```console
 $ pip install --user --upgrade g
+```
+
+Or with uv:
+
+```console
+$ uv tool upgrade g
+```
+
+```console
+$ uv add g
 ```
 
 (developmental-releases)=
@@ -28,6 +56,20 @@ In their versions you will see notification like `a1`, `b1`, and `rc1`, respecti
 
   ```console
   $ pip install --user --upgrade --pre g
+  ```
+
+- [uv]\:
+
+  ```console
+  $ uv tool install g
+  ```
+
+  ```console
+  $ uv add g
+  ```
+
+  ```console
+  $ uvx g
   ```
 
 - [pipx]\:
@@ -46,6 +88,20 @@ via trunk (can break easily):
   $ pip install --user -e git+https://github.com/vcs-python/g.git#egg=g
   ```
 
+- [uv]\:
+
+  ```console
+  $ uv tool install git+https://github.com/vcs-python/g.git
+  ```
+
+  ```console
+  $ uv add git+https://github.com/vcs-python/g.git
+  ```
+
+  ```console
+  $ uvx --from git+https://github.com/vcs-python/g.git g --version
+  ```
+
 - [pipx]\:
 
   ```console
@@ -54,3 +110,4 @@ via trunk (can break easily):
 
 [pip]: https://pip.pypa.io/en/stable/
 [pipx]: https://pypa.github.io/pipx/docs/
+[uv]: https://docs.astral.sh/uv/

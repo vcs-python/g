@@ -8,6 +8,24 @@ To install the unreleased g version, see [developmental releases](https://g.git-
 $ pip install --user --upgrade --pre g
 ```
 
+[uv](https://docs.astral.sh/uv/):
+
+```console
+$ uv tool install g
+```
+
+Working inside a uv-managed project:
+
+```console
+$ uv add g
+```
+
+For one-off use without installing globally:
+
+```console
+$ uvx g
+```
+
 [pipx](https://pypa.github.io/pipx/docs/):
 
 ```console

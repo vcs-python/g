@@ -2,7 +2,7 @@
 name = "g"
 version = "0.0.7"
 description = "cli command to easily sync current directory"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 authors = [
   {name = "Tony Narlock", email = "tony@git-pull.com"}
 ]

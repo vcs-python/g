@@ -58,27 +58,30 @@ In their versions you will see notification like `a1`, `b1`, and `rc1`, respecti
   $ pip install --user --upgrade --pre g
   ```
 
-- [uv]\:
-
-  ```console
-  $ uv tool install g
-  ```
-
-  ```console
-  $ uv add g
-  ```
-
-  ```console
-  $ uvx g
-  ```
-
 - [pipx]\:
 
   ```console
   $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
+  // Usage: g@next --help
   ```
 
-  Then use `g@next sync [config]...`.
+- [uv tool install][uv-tools]\:
+
+  ```console
+  $ uv tool install --prerelease=allow g
+  ```
+
+- [uv]\:
+
+  ```console
+  $ uv add g --prerelease allow
+  ```
+
+- [uvx]\:
+
+  ```console
+  $ uvx --from 'g' --prerelease allow g
+  ```
 
 via trunk (can break easily):
 
@@ -111,3 +114,5 @@ via trunk (can break easily):
 [pip]: https://pip.pypa.io/en/stable/
 [pipx]: https://pypa.github.io/pipx/docs/
 [uv]: https://docs.astral.sh/uv/
+[uv-tools]: https://docs.astral.sh/uv/concepts/tools/
+[uvx]: https://docs.astral.sh/uv/guides/tools/

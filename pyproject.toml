@@ -1,6 +1,6 @@
 [project]
 name = "g"
-version = "0.0.7"
+version = "0.0.8"
 description = "cli command to easily sync current directory"
 requires-python = ">=3.10,<4.0"
 authors = [

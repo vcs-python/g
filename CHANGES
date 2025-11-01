@@ -41,6 +41,8 @@ $ pipx install --suffix=@next g --pip-args '\--pre' --force
 
 ### Development
 
+- Add Python 3.14 to test matrix (#40)
+
 #### chore: Implement PEP 563 deferred annotation resolution (#34)
 
 - Add `from __future__ import annotations` to defer annotation resolution and reduce unnecessary runtime computations during type checking.

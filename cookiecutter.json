@@ -1,0 +1,19 @@
+{
+    "project_name": "my_cli_tool",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_description": "CLI tool for developers",
+    "project_short_description": "CLI tool for developers",
+    "package_name": "{{ cookiecutter.project_slug }}",
+    "author_name": "Your Name",
+    "author_email": "your.email@example.com",
+    "github_username": "username",
+    "github_repo": "{{ cookiecutter.project_slug }}",
+    "version": "0.1.0",
+    "python_version": "3.9",
+    "license": ["MIT", "BSD-3", "GPL-3.0", "Apache-2.0"],
+    "include_docs": ["y", "n"],
+    "include_github_actions": ["y", "n"],
+    "include_tests": ["y", "n"],
+    "supported_vcs": ["git", "svn", "hg"],
+    "create_author_file": ["y", "n"]
+} 

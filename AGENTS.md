@@ -109,7 +109,7 @@ tests/test_cli.py
 ## Coding Standards
 
 - Include `from __future__ import annotations` at the top of Python modules.
-- Use namespace imports: `import typing as t`, `import logging`, etc.; avoid `from typing import ...`.
+- Use namespace imports for stdlib: `import typing as t`, `import logging`, etc.; third-party packages may use `from X import Y`.
 - Follow NumPy-style docstrings (see existing docstrings in `run` and pytest config requiring `pydocstyle` via ruff).
 - Ruff is the source of truth for lint rules; see `pyproject.toml` for enabled checks (E, F, I, UP, A, B, C4, COM, EM, Q, PTH, SIM, TRY, PERF, RUF, D, FA100).
 - Type checking is strict (`mypy --strict`); favor precise types and avoid `Any` unless necessary.

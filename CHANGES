@@ -33,6 +33,10 @@ $ uvx --from 'g' --prerelease allow g
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Documentation
+
+- Migrate docs deployment to AWS OIDC authentication and AWS CLI
+
 ## g 0.0.8 (2025-11-01)
 
 ### Breaking changes

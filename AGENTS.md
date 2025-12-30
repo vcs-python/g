@@ -114,6 +114,36 @@ tests/test_cli.py
 - Ruff is the source of truth for lint rules; see `pyproject.toml` for enabled checks (E, F, I, UP, A, B, C4, COM, EM, Q, PTH, SIM, TRY, PERF, RUF, D, FA100).
 - Type checking is strict (`mypy --strict`); favor precise types and avoid `Any` unless necessary.
 
+## Doctests
+
+**All functions and methods MUST have working doctests.** Doctests serve as both documentation and tests.
+
+**CRITICAL RULES:**
+- Doctests MUST actually execute - never comment out function calls or similar
+- Doctests MUST NOT be converted to `.. code-block::` as a workaround (code-blocks don't run)
+- If you cannot create a working doctest, **STOP and ask for help**
+
+**Available tools for doctests:**
+- `doctest_namespace` fixtures: `tmp_path`
+- Ellipsis for variable output: `# doctest: +ELLIPSIS`
+- Update `conftest.py` to add new fixtures to `doctest_namespace`
+
+**`# doctest: +SKIP` is NOT permitted** - it's just another workaround that doesn't test anything. If a VCS binary might not be installed, use proper skip markers in pytest.
+
+**Using fixtures in doctests:**
+```python
+>>> from g import find_repo_type
+>>> find_repo_type('/some/git/repo')  # doctest: +ELLIPSIS
+'git'
+```
+
+**When output varies, use ellipsis:**
+```python
+>>> import pathlib
+>>> pathlib.Path.cwd()  # doctest: +ELLIPSIS
+PosixPath('...')
+```
+
 ## Debugging Tips
 
 - Add logging with `logging` configured in `run`; keep output minimal because the CLI forwards to underlying VCS.

@@ -29,9 +29,11 @@ $ uvx --from 'g' --prerelease allow g
 
 ## g 0.0.9 (unreleased)
 
-- _Notes on upcoming releases will be added here_
-
 <!-- Maintainers, insert changes / features for the next release here -->
+
+### Packaging
+
+- Migrate to PyPI Trusted Publisher (#43)
 
 ### Documentation
 

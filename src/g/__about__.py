@@ -5,7 +5,7 @@ from __future__ import annotations
 __title__ = "g"
 __package_name__ = "g"
 __description__ = "CLI alias for your current directory's VCS command: git, svn, hg"
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 __author__ = "Tony Narlock"
 __github__ = "https://github.com/vcs-python/g"
 __docs__ = "https://g.git-pull.com"

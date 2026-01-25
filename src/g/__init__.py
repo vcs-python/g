@@ -14,7 +14,7 @@ from os import PathLike
 
 from g.__about__ import __version__
 
-__all__ = ["DEFAULT", "create_parser", "run", "sys", "vcspath_registry"]
+__all__ = ["DEFAULT", "__version__", "create_parser", "run", "sys", "vcspath_registry"]
 
 vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 
@@ -99,8 +99,10 @@ def run(
     # Handle --version/-V before VCS detection
     assert isinstance(cmd_args, (tuple, list))
     if cmd_args and cmd_args[0] in ("--version", "-V"):
-        parser = create_parser()
-        parser.parse_args(["--version"])  # Will print version and exit
+        print(f"g {__version__}")
+        if os.getenv("G_IS_TEST") and __name__ != "__main__":
+            return None
+        sys.exit(0)
 
     if cmd is DEFAULT:
         cmd = find_repo_type(pathlib.Path.cwd())

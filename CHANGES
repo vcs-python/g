@@ -29,7 +29,9 @@ $ uvx --from 'g' --prerelease allow g
 
 ## g 0.0.10 (unreleased)
 
+<!-- KEEP THIS PLACEHOLDER - DO NOT REMOVE OR MODIFY THIS LINE -->
 _Notes on upcoming releases will be added here_
+<!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
 <!-- Maintainers, insert changes / features for the next release here -->
 

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-import io
+import argparse
 import logging
 import os
 import pathlib
@@ -12,7 +12,9 @@ import sys
 import typing as t
 from os import PathLike
 
-__all__ = ["DEFAULT", "run", "sys", "vcspath_registry"]
+from g.__about__ import __version__
+
+__all__ = ["DEFAULT", "__version__", "create_parser", "run", "sys", "vcspath_registry"]
 
 vcspath_registry = {".git": "git", ".svn": "svn", ".hg": "hg"}
 
@@ -26,6 +28,50 @@ def find_repo_type(path: pathlib.Path | str) -> str | None:
             if p.is_dir() and p.name in vcspath_registry:
                 return vcspath_registry[p.name]
     return None
+
+
+def create_parser() -> argparse.ArgumentParser:
+    """Create argument parser for g CLI.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Configured argument parser for the g command.
+
+    Examples
+    --------
+    >>> parser = create_parser()
+    >>> parser.prog
+    'g'
+
+    >>> args = parser.parse_args(['status'])
+    >>> args.vcs_args
+    ['status']
+
+    >>> args = parser.parse_args(['commit', '-m', 'message'])
+    >>> args.vcs_args
+    ['commit', '-m', 'message']
+    """
+    parser = argparse.ArgumentParser(
+        prog="g",
+        description="CLI alias for your current directory's VCS command "
+        "(git, svn, hg).",
+        epilog="Arguments are passed to the detected VCS (except --version/-V).",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--version",
+        "-V",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
+    parser.add_argument(
+        "vcs_args",
+        nargs=argparse.REMAINDER,
+        metavar="...",
+        help="Arguments passed to the detected VCS (git, svn, or hg)",
+    )
+    return parser
 
 
 DEFAULT = object()
@@ -47,10 +93,19 @@ def run(
         returned, it would print *<Popen: returncode: 1 args: ['git']>* after command.
     """
     # Interpret default kwargs lazily for mockability of argv
-    if cmd is DEFAULT:
-        cmd = find_repo_type(pathlib.Path.cwd())
     if cmd_args is DEFAULT:
         cmd_args = sys.argv[1:]
+
+    # Handle --version/-V before VCS detection
+    assert isinstance(cmd_args, (tuple, list))
+    if cmd_args and cmd_args[0] in ("--version", "-V"):
+        print(f"g {__version__}")
+        if os.getenv("G_IS_TEST") and __name__ != "__main__":
+            return None
+        sys.exit(0)
+
+    if cmd is DEFAULT:
+        cmd = find_repo_type(pathlib.Path.cwd())
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -59,7 +114,6 @@ def run(
         log.info(msg)
         return None
 
-    assert isinstance(cmd_args, (tuple, list))
     assert isinstance(cmd, (str, bytes, pathlib.Path))
 
     proc = subprocess.Popen([cmd, *cmd_args], **kwargs)

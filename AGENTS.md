@@ -17,7 +17,7 @@ g is a lightweight CLI wrapper that proxies to the current directory's VCS comma
 
 Key features:
 - Detects VCS by walking parent directories and mapping `.git`, `.svn`, or `.hg`
-- Proxies CLI arguments directly to the detected VCS binary
+- Proxies CLI arguments to the detected VCS binary (--version/-V is handled by g)
 - Minimal surface area: primary logic lives in `src/g/__init__.py`
 - Test fixtures cover CLI behavior for both repo and non-repo directories
 

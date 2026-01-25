@@ -84,6 +84,9 @@ dev = [
   # Lint
   "ruff",
   "mypy",
+  # Type stubs
+  "types-docutils",
+  "types-Pygments",
 ]
 
 docs = [
@@ -125,10 +128,25 @@ build-backend = "hatchling.build"
 [tool.mypy]
 strict = true
 python_version = "3.10"
+mypy_path = ["src", "docs/_ext"]
+explicit_package_bases = true
 files = [
   "src/",
   "tests/",
+  "docs/_ext/",
 ]
+exclude = [
+  "tests/docs/",
+  "docs/_ext/conftest\\.py$",
+]
+
+[[tool.mypy.overrides]]
+module = [
+  "cli_usage_lexer",
+  "argparse_lexer",
+  "argparse_roles",
+]
+ignore_missing_imports = true
 
 [tool.ruff]
 target-version = "py310"

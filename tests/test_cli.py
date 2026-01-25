@@ -81,6 +81,18 @@ TEST_FIXTURES: list[CommandLineTestFixture] = [
         argv_args=["g --help"],
         expect_cmd=None,
     ),
+    CommandLineTestFixture(
+        test_id="g-version-inside-git-dir",
+        env=EnvFlag.Git,
+        argv_args=["g", "--version"],
+        expect_cmd=None,  # Returns None after printing version
+    ),
+    CommandLineTestFixture(
+        test_id="g-version-short-inside-empty-dir",
+        env=EnvFlag.Empty,
+        argv_args=["g", "-V"],
+        expect_cmd=None,
+    ),
 ]
 
 
@@ -120,3 +132,25 @@ def test_command_line(
                 shell=True,
                 stderr=subprocess.STDOUT,
             )
+
+
+def test_version_output(capsys: pytest.CaptureFixture[str]) -> None:
+    """Test that --version prints the correct version string."""
+    from g import __version__, sys as gsys
+
+    with patch.object(gsys, "argv", ["g", "--version"]):
+        result = run()
+        assert result is None
+        captured = capsys.readouterr()
+        assert f"g {__version__}" in captured.out
+
+
+def test_version_short_output(capsys: pytest.CaptureFixture[str]) -> None:
+    """Test that -V prints the correct version string."""
+    from g import __version__, sys as gsys
+
+    with patch.object(gsys, "argv", ["g", "-V"]):
+        result = run()
+        assert result is None
+        captured = capsys.readouterr()
+        assert f"g {__version__}" in captured.out

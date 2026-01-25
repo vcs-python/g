@@ -8,6 +8,7 @@
 :hidden:
 
 quickstart
+cli/index
 ```
 
 ```{toctree}

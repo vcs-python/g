@@ -207,10 +207,23 @@ class ExemplarConfig:
 
         Examples
         --------
-        This is typically called from a directive's run() method:
+        Create config from a Sphinx configuration object (typically called from
+        a directive's run() method):
 
-        >>> # In CleanArgParseDirective.run():
-        >>> # config = ExemplarConfig.from_sphinx_config(self.env.config)
+        >>> from types import SimpleNamespace
+        >>> mock_config = SimpleNamespace()
+        >>> mock_config.argparse_examples_command_prefix = "> "
+        >>> mock_config.argparse_examples_code_language = "bash"
+        >>> config = ExemplarConfig.from_sphinx_config(mock_config)
+        >>> config.command_prefix
+        '> '
+        >>> config.code_language
+        'bash'
+
+        Attributes not set on the config object use defaults:
+
+        >>> config.examples_term_suffix
+        'examples'
         """
         # Get code_classes as tuple (Sphinx stores lists)
         code_classes_raw = getattr(

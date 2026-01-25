@@ -129,6 +129,23 @@ files = [
   "src/",
   "tests/",
 ]
+exclude = [
+  "tests/docs/",
+]
+
+[[tool.mypy.overrides]]
+module = [
+  "sphinx_argparse_neo",
+  "sphinx_argparse_neo.*",
+  "argparse_lexer",
+  "argparse_roles",
+  "argparse_exemplar",
+  "docutils",
+  "docutils.*",
+  "pygments",
+  "pygments.*",
+]
+ignore_missing_imports = true
 
 [tool.ruff]
 target-version = "py310"

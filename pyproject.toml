@@ -84,6 +84,9 @@ dev = [
   # Lint
   "ruff",
   "mypy",
+  # Type stubs
+  "types-docutils",
+  "types-Pygments",
 ]
 
 docs = [
@@ -125,25 +128,23 @@ build-backend = "hatchling.build"
 [tool.mypy]
 strict = true
 python_version = "3.10"
+mypy_path = ["src", "docs/_ext"]
+explicit_package_bases = true
 files = [
   "src/",
   "tests/",
+  "docs/_ext/",
 ]
 exclude = [
   "tests/docs/",
+  "conftest\\.py$",
 ]
 
 [[tool.mypy.overrides]]
 module = [
-  "sphinx_argparse_neo",
-  "sphinx_argparse_neo.*",
+  "cli_usage_lexer",
   "argparse_lexer",
   "argparse_roles",
-  "argparse_exemplar",
-  "docutils",
-  "docutils.*",
-  "pygments",
-  "pygments.*",
 ]
 ignore_missing_imports = true
 

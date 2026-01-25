@@ -11,7 +11,6 @@ import typing as t
 
 from docutils import nodes
 from docutils.statemachine import StringList
-
 from sphinx_argparse_neo.nodes import (
     argparse_argument,
     argparse_group,

@@ -23,7 +23,6 @@ if str(_ext_dir) not in sys.path:
     sys.path.insert(0, str(_ext_dir))
 
 from argparse_lexer import ArgparseUsageLexer  # noqa: E402
-
 from sphinx_argparse_neo.utils import strip_ansi  # noqa: E402
 
 

@@ -54,7 +54,8 @@ def create_parser() -> argparse.ArgumentParser:
     """
     parser = argparse.ArgumentParser(
         prog="g",
-        description="CLI alias for your current directory's VCS command (git, svn, hg).",
+        description="CLI alias for your current directory's VCS command "
+        "(git, svn, hg).",
         epilog="All arguments are passed directly to the detected VCS.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )

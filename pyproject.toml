@@ -142,6 +142,7 @@ exclude = [
 
 [[tool.mypy.overrides]]
 module = [
+  "sphinx_fonts",
   "cli_usage_lexer",
   "argparse_lexer",
   "argparse_roles",

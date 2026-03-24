@@ -45,7 +45,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
@@ -182,8 +182,8 @@ dev:
 	$(MAKE) -j watch serve
 
 start:
-	uv run sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) --port ${HTTP_PORT} $(O)
+	uv run sphinx-autobuild -b dirhtml "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) --port ${HTTP_PORT} $(O)
 
 design:
 	# This adds additional watch directories (for _static file changes) and disable incremental builds
-	uv run sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) --port ${HTTP_PORT} --watch "." -a $(O)
+	uv run sphinx-autobuild -b dirhtml "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) --port ${HTTP_PORT} --watch "." -a $(O)

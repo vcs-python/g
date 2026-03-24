@@ -60,6 +60,10 @@ jobs:
           python -V
           uv run python -V
 
+      - name: Install just
+        if: env.PUBLISH == 'true'
+        uses: extractions/setup-just@v3
+
       - name: Cache sphinx fonts
         if: env.PUBLISH == 'true'
         uses: actions/cache@v5

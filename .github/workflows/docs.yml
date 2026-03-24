@@ -72,7 +72,7 @@ jobs:
       - name: Build documentation
         if: env.PUBLISH == 'true'
         run: |
-          pushd docs; make SPHINXBUILD='uv run sphinx-build' html; popd
+          cd docs && just html
 
       - name: Configure AWS Credentials
         if: env.PUBLISH == 'true'

@@ -21,13 +21,13 @@ watch_test:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) test; else $(MAKE) test entr_warn; fi
 
 build_docs:
-	$(MAKE) -C docs html
+	just -f docs/justfile html
 
 start_docs:
-	$(MAKE) -C docs start
+	just -f docs/justfile start
 
 design_docs:
-	$(MAKE) -C docs design
+	just -f docs/justfile design
 
 ruff_format:
 	uv run ruff format .

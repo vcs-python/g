@@ -43,6 +43,7 @@ extensions = [
     "myst_parser",
     "linkify_issues",
     "argparse_exemplar",
+    "sphinx_design",
 ]
 myst_enable_extensions = [
     "colon_fence",
@@ -51,6 +52,7 @@ myst_enable_extensions = [
     "strikethrough",
     "linkify",
 ]
+myst_heading_anchors = 4
 
 templates_path = ["_templates"]
 

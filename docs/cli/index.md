@@ -1,6 +1,23 @@
 (cli)=
 
-# CLI
+# CLI Reference
+
+::::{grid} 1 1 2 2
+:gutter: 2 2 3 3
+
+:::{grid-item-card} g
+:link: #command
+:link-type: url
+Proxy to your repo's VCS command.
+:::
+
+:::{grid-item-card} Supported VCS
+:link: #supported-vcs
+:link-type: url
+git, svn, and hg detection.
+:::
+
+::::
 
 g is a minimal CLI wrapper that proxies to your current directory's VCS command.
 

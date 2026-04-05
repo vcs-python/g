@@ -59,19 +59,10 @@ dev = [
   # Docs
   "aafigure",
   "pillow",
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a1",
+  "sphinx-argparse-neo==0.0.1a1",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "sphinx-argparse",
-  "myst-parser",
-  "sphinx-design",  # https://sphinx-design.readthedocs.io/
-  "linkify-it-py",
   # Testing
   "gp-libs",
   "pytest",
@@ -93,18 +84,10 @@ dev = [
 docs = [
   "aafigure",
   "pillow",
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a1",
+  "sphinx-argparse-neo==0.0.1a1",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "myst-parser",
-  "linkify-it-py",
-  "sphinx-design",  # https://sphinx-design.readthedocs.io/
 ]
 testing = [
   "gp-libs",
@@ -130,26 +113,12 @@ build-backend = "hatchling.build"
 [tool.mypy]
 strict = true
 python_version = "3.10"
-mypy_path = ["src", "docs/_ext"]
+mypy_path = ["src"]
 explicit_package_bases = true
 files = [
   "src/",
   "tests/",
-  "docs/_ext/",
 ]
-exclude = [
-  "tests/docs/",
-  "docs/_ext/conftest\\.py$",
-]
-
-[[tool.mypy.overrides]]
-module = [
-  "sphinx_fonts",
-  "cli_usage_lexer",
-  "argparse_lexer",
-  "argparse_roles",
-]
-ignore_missing_imports = true
 
 [tool.ruff]
 target-version = "py310"

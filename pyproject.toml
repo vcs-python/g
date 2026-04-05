@@ -59,19 +59,10 @@ dev = [
   # Docs
   "aafigure",
   "pillow",
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a0",
+  "sphinx-argparse-neo==0.0.1a0",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "sphinx-argparse",
-  "myst-parser",
-  "sphinx-design",  # https://sphinx-design.readthedocs.io/
-  "linkify-it-py",
   # Testing
   "gp-libs",
   "pytest",
@@ -93,18 +84,10 @@ dev = [
 docs = [
   "aafigure",
   "pillow",
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a0",
+  "sphinx-argparse-neo==0.0.1a0",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "myst-parser",
-  "linkify-it-py",
-  "sphinx-design",  # https://sphinx-design.readthedocs.io/
 ]
 testing = [
   "gp-libs",

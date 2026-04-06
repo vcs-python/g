@@ -30,7 +30,11 @@ conf = merge_sphinx_config(
     source_branch="master",
     light_logo="img/g.svg",
     dark_logo="img/g-dark.svg",
-    extra_extensions=["sphinx.ext.todo", "sphinx_argparse_neo.exemplar"],
+    extra_extensions=[
+        "sphinx_autodoc_api_style",
+        "sphinx.ext.todo",
+        "sphinx_argparse_neo.exemplar",
+    ],
     intersphinx_mapping={
         "py": ("https://docs.python.org/", None),
         "libvcs": ("http://libvcs.git-pull.com/", None),

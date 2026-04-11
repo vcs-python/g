@@ -33,6 +33,11 @@ $ uvx --from 'g' --prerelease allow g
 _Notes on upcoming releases will be added here_
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Documentation
+
+- Visual improvements to API docs from [gp-sphinx](https://gp-sphinx.git-pull.com)-based Sphinx packages (#53)
+
+
 ### CLI
 
 - `g --version` and `g -V` now display g's version instead of being passed to

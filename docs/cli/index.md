@@ -6,14 +6,14 @@
 :gutter: 2 2 3 3
 
 :::{grid-item-card} g
-:link: #command
-:link-type: url
+:link: cli-main
+:link-type: ref
 Proxy to your repo's VCS command.
 :::
 
 :::{grid-item-card} Supported VCS
-:link: #supported-vcs
-:link-type: url
+:link: cli-supported-vcs
+:link-type: ref
 git, svn, and hg detection.
 :::
 
@@ -31,7 +31,7 @@ When you run `g`, it:
 
 **Note:** `--version`/`-V` is handled by g itself rather than passed to the VCS.
 
-## Usage
+## Usage examples
 
 ```console
 $ g status
@@ -64,6 +64,8 @@ $ g commit -m "Fix bug"
 $ g log --oneline -10
 $ g diff HEAD~1
 ```
+
+(cli-supported-vcs)=
 
 ## Supported VCS
 

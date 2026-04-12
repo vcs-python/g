@@ -33,7 +33,7 @@ conf = merge_sphinx_config(
     extra_extensions=[
         "sphinx_autodoc_api_style",
         "sphinx.ext.todo",
-        "sphinx_argparse_neo.exemplar",
+        "sphinx_autodoc_argparse.exemplar",
     ],
     intersphinx_mapping={
         "py": ("https://docs.python.org/", None),

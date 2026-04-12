@@ -31,7 +31,7 @@ When you run `g`, it:
 
 **Note:** `--version`/`-V` is handled by g itself rather than passed to the VCS.
 
-## Usage
+## Usage examples
 
 ```console
 $ g status

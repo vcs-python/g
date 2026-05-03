@@ -59,9 +59,9 @@ dev = [
   # Docs
   "aafigure",
   "pillow",
-  "gp-sphinx==0.0.1a15",
-  "sphinx-autodoc-argparse==0.0.1a15",
-  "sphinx-autodoc-api-style==0.0.1a15",
+  "gp-sphinx==0.0.1a16",
+  "sphinx-autodoc-argparse==0.0.1a16",
+  "sphinx-autodoc-api-style==0.0.1a16",
   "gp-libs",
   "sphinx-autobuild",
   # Testing
@@ -85,9 +85,9 @@ dev = [
 docs = [
   "aafigure",
   "pillow",
-  "gp-sphinx==0.0.1a15",
-  "sphinx-autodoc-argparse==0.0.1a15",
-  "sphinx-autodoc-api-style==0.0.1a15",
+  "gp-sphinx==0.0.1a16",
+  "sphinx-autodoc-argparse==0.0.1a16",
+  "sphinx-autodoc-api-style==0.0.1a16",
   "gp-libs",
   "sphinx-autobuild",
 ]
@@ -122,7 +122,6 @@ build-backend = "hatchling.build"
 gp-libs = false
 gp-furo-theme = false
 gp-sphinx = false
-gp-sphinx-vite = false
 sphinx-autodoc-api-style = false
 sphinx-autodoc-argparse = false
 sphinx-autodoc-docutils = false

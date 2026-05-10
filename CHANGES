@@ -33,304 +33,229 @@ $ uvx --from 'g' --prerelease allow g
 _Notes on upcoming releases will be added here_
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
-### Documentation
+g 0.0.10 turns g's documentation into a usable CLI reference and moves the docs site onto the shared gp-libs documentation platform. The CLI now answers its own version flags, the {doc}`cli/index` page documents how arguments pass through to the detected VCS, and the site picks up the newer [gp-sphinx](https://gp-sphinx.git-pull.com/) rendering stack used across the gp-libs family.
 
-- Visual improvements to API docs from [gp-sphinx](https://gp-sphinx.git-pull.com)-based Sphinx packages (#53)
-- Bump gp-sphinx docs stack to v0.0.1a8 (#54)
-- Bump gp-sphinx docs stack to v0.0.1a16 — docs site now renders
-  via `gp-furo-theme`, a Tailwind v4 respin of Furo, with
-  `sphinx-vite-builder` handling theme-asset builds (#55)
+### What's new
 
+#### `g --version` / `g -V` report g's version (#46)
 
-### CLI
+`g --version` and `g -V` now print g's installed version instead of forwarding those flags to `git`, `svn`, or `hg`. This gives users a direct way to confirm which wrapper version is on `PATH` while keeping the normal proxy behavior unchanged for VCS commands.
 
-- `g --version` and `g -V` now display g's version instead of being passed to
-  the underlying VCS (#46)
+The implementation preserves the existing {func}`g.run` test hook: in test mode the version path returns cleanly instead of exiting through `argparse`, so the behavior can be asserted without special subprocess handling.
 
-  This makes it easier to check which version of g you have installed:
+#### First-party CLI reference page (#46)
 
-  ```console
-  $ g --version
-  g 0.0.10
-  ```
+The new {doc}`cli/index` page explains g's repository detection flow, shows command equivalence examples, and renders {func}`g.create_parser` through the argparse documentation extension. Argument sections now have stable anchors, so users can link directly to the version flags or pass-through argument reference.
 
-### Documentation
+The CLI docs also clarify the one exception to g's pass-through model: `--version` and `-V` are handled by g itself, while the remaining arguments are sent to the detected VCS command.
 
-- Add [CLI documentation page](https://g.git-pull.com/cli/) with complete
-  command reference (#46)
+#### Documentation frontend refresh (#50, #51)
 
-- CLI argument documentation now has linkable anchors (headerlinks) for easy
-  sharing and reference (#46)
+The documentation homepage now presents g as a tiny VCS proxy first, with direct paths into {doc}`quickstart`, {doc}`cli/index`, and contributor documentation. The site also moved to clean `dirhtml` URLs, a `just`-based docs build, and a project section for contributing, code style, and release notes.
 
-## g 0.0.9 (2026-01-24)
+The frontend gained self-hosted IBM Plex fonts, fallback metrics to avoid text reflow, stable image and badge dimensions, SPA-like internal navigation, and View Transitions API crossfades where the browser supports them. These changes make the docs feel faster and steadier without changing g's runtime package surface.
 
-### Packaging
+#### Shared gp-sphinx documentation stack (#52, #53, #54, #55)
 
-- Migrate to PyPI Trusted Publisher (#43)
+g now consumes the published gp-sphinx package set instead of carrying repo-local Sphinx extensions, templates, custom CSS, and JavaScript. The shared stack provides the Furo-derived theme layer, argparse documentation support, font handling, API presentation helpers, and linkcode defaults in one place.
 
-### Documentation
-
-- Migrate docs deployment to AWS OIDC authentication and AWS CLI
-
-## g 0.0.8 (2025-11-01)
-
-### Breaking changes
-
-- Drop support for Python 3.9; the new minimum is Python 3.10 (#41). See also:
-  - [Python 3.9 EOL timeline](https://devguide.python.org/versions/#:~:text=Release%20manager-,3.9,-PEP%20596)
-  - [PEP 596](https://peps.python.org/pep-0596/)
-
-### Development
-
-- Add Python 3.14 to test matrix (#40)
-
-#### chore: Implement PEP 563 deferred annotation resolution (#34)
-
-- Add `from __future__ import annotations` to defer annotation resolution and reduce unnecessary runtime computations during type checking.
-- Enable Ruff checks for PEP-compliant annotations:
-  - [non-pep585-annotation (UP006)](https://docs.astral.sh/ruff/rules/non-pep585-annotation/)
-  - [non-pep604-annotation (UP007)](https://docs.astral.sh/ruff/rules/non-pep604-annotation/)
-
-For more details on PEP 563, see: https://peps.python.org/pep-0563/
-
-## g 0.0.7 (2024-12-20)
-
-_Maintenance only, no bug fixes, or new features_
-
-### Breaking changes (#33)
-
-- Drop Python 3.8
-
-  The minimum version of Python in this and future releases is Python 3.9.
-
-  Python 3.8 reached end-of-life status on October 7th, 2024 (see PEP 569).
-
-### Development
-
-- Aggressive automated lint fixes via `ruff` (#32)
-
-  via ruff v0.8.4, all automated lint fixes, including unsafe and previews were applied for Python 3.9:
-
-  ```sh
-  ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; ruff format .
-  ```
-
-## g 0.0.6 (2024-11-26)
-
-_Maintenance only, no bug fixes, or new features_
-
-### Breaking changes
-
-#### Project and package management: poetry to uv (#30)
-
-[uv] is the new package and project manager for the project, replacing Poetry.
-
-[uv]: https://github.com/astral-sh/uv
-
-#### Build system: poetry to hatchling (#30)
-
-[Build system] moved from [poetry] to [hatchling].
-
-[Build system]: https://packaging.python.org/en/latest/tutorials/packaging-projects/#choosing-a-build-backend
-[poetry]: https://github.com/python-poetry/poetry
-[hatchling]: https://hatch.pypa.io/latest/
-
-## g 0.0.5 (2024-06-08)
+The API page now uses card-style autodoc signatures and badge styling from `sphinx-autodoc-api-style`; the CLI reference benefits from the argparse domain and duplicate-label fixes; and the later `gp-furo-theme` / `sphinx-vite-builder` consolidation moves theme assets into a wheel-backed Vite pipeline. Downstream effect: g stays aligned with the gp-libs docs platform while deleting thousands of lines of local documentation plumbing.
 
 ### Fixes
 
-- Fix `g` when running outside of a VCS directory (#24)
-
-### Tests
-
-- Use declarative, typed `NamedTuple`-style for `test_command_line` fixtures
-  (#24)
+- The CLI documentation cards now use reference links instead of URL-fragment options, avoiding MyST directive parsing warnings in grid cards (#54).
+- The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated `usage` anchor (#54).
+- Light and dark mode CSS for argparse metadata and header links now handles Furo's automatic theme mode correctly (#46).
 
 ### Development
 
-- poetry: 1.8.1 -> 1.8.2
+- Root `conftest.py` remains type-checked while the temporary docs-extension mypy path excludes only the extension-local `docs/_ext/conftest.py` case that caused duplicate module discovery (#46).
+- The docs dependency pins track gp-sphinx through `0.0.1a17`, including the `exclude-newer` whitelist needed for the git-pull package family during coordinated pre-release work (#55).
 
-  See also: https://github.com/python-poetry/poetry/blob/1.8.2/CHANGELOG.md
+## g 0.0.9 (2026-01-24)
 
-## g v0.0.4 (2024-03-24)
+g 0.0.9 hardens release and documentation publishing. The project no longer relies on long-lived PyPI or AWS secrets for the main publishing paths, and the release job now participates in PyPI's trusted-publishing and attestation flow.
 
-_Maintenance only, no bug fixes, or new features_
+### What's new
+
+#### PyPI Trusted Publisher release flow (#43)
+
+Package publishing moved from stored API credentials to PyPI Trusted Publisher via GitHub Actions OIDC. The release workflow requests `id-token` and attestation permissions, publishes without embedding a PyPI token in repository secrets, and fixes the deprecated `skip_existing` input name along the way.
+
+#### OIDC-backed documentation deployment
+
+Documentation deployment moved to AWS OIDC authentication and the AWS CLI. That keeps the docs pipeline aligned with the same short-lived-credential model used for package publishing.
 
 ### Development
 
-- Aggressive automated lint fixes via `ruff` (#23)
+- GitHub Actions dependencies were refreshed, including checkout, setup-uv, and AWS credential actions.
+- The docs dependency range pinned Sphinx below 9 while the gp-libs docs stack caught up with upstream changes.
 
-  via ruff v0.3.4, all automated lint fixes, including unsafe and previews were applied:
+## g 0.0.8 (2025-11-01)
 
-  ```sh
-  ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; ruff format .
-  ```
+g 0.0.8 updates the supported Python window for current runtimes. Python 3.9 support is removed after end of life, and Python 3.14 is added to the classifiers, test matrix, and docs build path.
 
-  Branches were treated with:
+### Breaking changes
 
-  ```sh
-  git rebase \
-      --strategy-option=theirs \
-      --exec 'poetry run ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; poetry run ruff format .; git add src tests; git commit --amend --no-edit' \
-      origin/master
-  ```
+#### Minimum Python is now 3.10 (#41)
 
-- poetry: 1.7.1 -> 1.8.1
+Python 3.9 reached end-of-life in October 2025, so g now requires Python 3.10 or newer. The package metadata, Trove classifiers, ruff target version, mypy configuration, test workflow, and lockfile were updated together so the declared support window matches CI.
 
-  See also: https://github.com/python-poetry/poetry/blob/1.8.1/CHANGELOG.md
+### What's new
 
-- ruff 0.2.2 -> 0.3.0 (#22)
+#### Python 3.14 support (#40)
 
-  Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
+Python 3.14 was added to the package classifiers and CI coverage. The docs workflow and test workflow now exercise the newer interpreter line used by current development environments.
 
-  See also: https://github.com/astral-sh/ruff/blob/v0.3.0/CHANGELOG.md
+### Development
 
-- Strengthen linting (#21)
+#### Future annotations across the codebase (#34)
 
-  - Add flake8-commas (COM)
+Modules now import `from __future__ import annotations`, and ruff checks enforce modern Python annotation syntax. This lets type-only names stay cheaper at runtime and keeps the source aligned with Python 3.10+ syntax expectations.
 
-    - https://docs.astral.sh/ruff/rules/#flake8-commas-com
-    - https://pypi.org/project/flake8-commas/
+## g 0.0.7 (2024-12-20)
 
-  - Add flake8-builtins (A)
+g 0.0.7 is a maintenance release for the Python 3.9 support baseline. It drops Python 3.8 after end of life and applies the syntax modernization unlocked by that support change.
 
-    - https://docs.astral.sh/ruff/rules/#flake8-builtins-a
-    - https://pypi.org/project/flake8-builtins/
+### Breaking changes
 
-  - Add flake8-errmsg (EM)
+#### Minimum Python is now 3.9 (#33)
 
-    - https://docs.astral.sh/ruff/rules/#flake8-errmsg-em
-    - https://pypi.org/project/flake8-errmsg/
+Python 3.8 reached end-of-life on October 7, 2024, so g now requires Python 3.9 or newer. The CI matrix, package metadata, README, and lockfile were updated together.
 
-## g v0.0.3 (2023-12-09)
+### Development
 
-- _Add your latest changes from PRs here_
+#### Python 3.9 syntax modernization (#32)
 
-### Packaging
+The ruff target version and mypy `python_version` now match Python 3.9, and the automated ruff pass converted eligible annotations to the modern built-in collection forms.
 
-- Move pytest configuration to `pyproject.toml` (#14)
-- Poetry 1.4.0 -> 1.7.0
+## g 0.0.6 (2024-11-26)
 
-  See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
+g 0.0.6 moves project management from Poetry to uv and switches the build backend to Hatchling. The release is a maintenance release, but it changes how contributors install, lock, build, and publish the project.
 
-- Packaging (poetry): Fix development dependencies
+### Breaking changes
 
-  Per [Poetry's docs on managing dependencies] and `poetry check`, we had it wrong: Instead of using extras, we should create these:
+#### Project management moves from Poetry to uv (#30)
 
-  ```toml
-  [tool.poetry.group.group-name.dependencies]
-  dev-dependency = "1.0.0"
-  ```
+uv is now the package and project manager for g. Development setup uses `uv sync --all-extras --dev`, the lockfile is `uv.lock`, and the old Poetry lock/config files were removed.
 
-  Which we now do.
+#### Build backend moves from Poetry to Hatchling (#30)
 
-  [Poetry's docs on managing dependencies]: https://python-poetry.org/docs/master/managing-dependencies/
+The package build backend moved from Poetry to [Hatchling](https://hatch.pypa.io/latest/). This aligns g with the newer gp-libs project layout while keeping the package itself small.
 
-### Internal improvements
+## g 0.0.5 (2024-06-08)
 
-- Move formatting, import sorting, and linting to [ruff].
+g 0.0.5 fixes the main user-facing failure mode outside a repository. Running `g` in a normal directory now exits cleanly with a diagnostic instead of surfacing an internal assertion.
 
-  This rust-based checker has dramatically improved performance. Linting and
-  formatting can be done almost instantly.
+### Fixes
 
-  This change replaces isort, flake8 and flake8 plugins.
+#### Running outside a VCS directory no longer raises `AssertionError` (#24)
 
-  - Add additional ruff linters in #11
-  - Move from black to [`ruff format`] (#17)
+When no `.git`, `.svn`, or `.hg` marker is found while walking upward from the current directory, g now reports that no VCS was found and returns without trying to spawn a subprocess. The test suite covers the non-repository case directly.
 
-    This retains the same formatting style of `black` while eliminating a
-    dev dependency by using our existing rust-based `ruff` linter.
+### Development
 
-    [`ruff format`]: https://docs.astral.sh/ruff/formatter/
+The CLI test fixtures were rewritten into typed `NamedTuple` records, and the `G_IS_TEST` environment flag remains the path for asserting subprocess behavior without leaking `Popen` objects into user output (#24).
 
-- CI: Update action packages to fix warnings
+## g 0.0.4 (2024-03-24)
 
-  - [dorny/paths-filter]: 2.7.0 -> 2.11.1
+g 0.0.4 is a maintenance release for linting and formatting. It refreshes the ruff toolchain, adopts the current `ruff check` command shape, and applies the repository-wide automated fixes from the new rule set.
 
-    [dorny/paths-filter]: https://github.com/dorny/paths-filter
+### Development
 
-- CI: Move CodeQL from advanced configuration file to GitHub's default
+#### Ruff command and formatter refresh (#22, #23)
 
-[ruff]: https://ruff.rs
+Ruff moved from `0.2.2` to `0.3.x`, and CI now uses `ruff check .` instead of the deprecated `ruff .` invocation. The source was reformatted through `ruff format` and cleaned up with the preview/unsafe automated fixes available at the time.
 
-### Infrastructure
+#### Stronger ruff rule coverage (#21)
 
-- CI speedups (#8)
+The lint configuration expanded to include additional ruff rule families, including flake8-commas, flake8-builtins, and flake8-errmsg compatibility checks. The follow-up cleanup fixed the small source and test issues those rules exposed.
 
-  - Split out release to separate job so the PyPI Upload docker image isn't pulled on normal runs
-  - Clean up CodeQL
+#### Poetry and CI dependency maintenance
 
-- ci: Add pydocstyle rule to ruff (#18)
-- Poetry: Bump 1.1.x to 1.2.x
+Poetry moved from `1.7.1` to `1.8.1`, and the CI helper actions were updated to remove warnings and keep CodeQL on GitHub's default configuration.
 
-### Packaging
+## g 0.0.3 (2023-12-09)
 
-- Remove `.tmuxp-before-script.sh` (was used in `tmuxp.yaml`'s `before_script`)
-- Drop Python 3.7 (#13)
+g 0.0.3 tightens the development harness around the small CLI wrapper. The release moves more configuration into `pyproject.toml`, strengthens docs and lint expectations, and fixes the visible `Popen` repr that could appear after running `g`.
+
+### Fixes
+
+#### `g` no longer prints a `Popen` representation after commands (#19)
+
+{func}`g.run` now returns the subprocess only when `G_IS_TEST` is set. Normal CLI usage no longer appends output such as `<Popen: returncode: 1 args: ['git']>` after the delegated VCS command.
 
 ### Documentation
 
-- Add docstrings to functions, methods, classes, and packages (#18)
+#### Docstrings and pydocstyle enforcement (#18)
 
-### Bug fixes
-
-- Prevent outputting `<Popen: returncode: 1 args: ['git']>` when running `g`
-  (#19)
-
-## g v0.0.2 (2022-09-11)
-
-**Maintenance only release, no bug fixes or features**
+Ruff now enforces pydocstyle with the NumPy convention, and the public modules, functions, tests, and docs configuration were updated with compliant docstrings. This makes the API documentation and doctest surface less dependent on undocumented behavior.
 
 ### Development
 
-- Move to `src/` layout (#7)
-- Add [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) (#4)
-- Add [flake8-comprehensions](https://github.com/adamchainz/flake8-comprehensions) (#5)
+#### Pytest and Poetry configuration cleanup (#14)
+
+Pytest configuration moved into `pyproject.toml`, and Poetry development dependencies moved from extras into proper dependency groups. That layout matches Poetry's current model and keeps test configuration next to the rest of the project metadata.
+
+#### Ruff replaces the older formatting and lint stack (#11, #17)
+
+Formatting, import sorting, and most linting moved to ruff, including `ruff format` in place of Black. This removed overlapping tooling while keeping fast local checks for a small CLI package.
+
+#### CI and packaging maintenance (#8, #13)
+
+The release job was split away from normal CI so the PyPI upload image is not pulled during ordinary test runs, and CodeQL configuration was simplified. Python 3.7 support was removed from package metadata and CI.
+
+## g 0.0.2 (2022-09-11)
+
+g 0.0.2 moves the package into a standard `src/` layout and adopts the first gp-libs documentation helpers. It is an infrastructure release aimed at making the project easier to package, document, and test consistently.
 
 ### Documentation
 
-- Render changelog in [`linkify_issues`] (#6)
-- Fix Table of contents rendering with sphinx autodoc with [`sphinx_toctree_autodoc_fix`] (#6)
+#### gp-libs Sphinx helpers replace fragile local docs wiring (#6)
 
-[`linkify_issues`]: https://gp-libs.git-pull.com/linkify_issues/
-[`sphinx_toctree_autodoc_fix`]: https://gp-libs.git-pull.com/sphinx_toctree_autodoc_fix/
+The changelog now renders with `linkify_issues`, and autodoc table-of-contents rendering uses the gp-libs Sphinx helper instead of the previous `sphinx-autoapi` path. The old `sphinx-autoapi` setup was intentionally removed because it was only carrying TOC behavior and had accumulated import-related workarounds.
 
-## g v0.0.1 (2022-08-17)
-
-### Tests
-
-Tests now pass
+The docs also gained an internal API page backed by `sphinx.ext.autodoc`, which is now the source for API object rendering in the generated site.
 
 ### Development
 
-Infrastructure updates for static type checking and doctest examples.
+#### Source layout matches modern Python packaging (#7)
 
-- Update development packages (black, isort)
-- Add .tool-versions, .python-version
-- Run code through black w/o `--skip-string-normalization`
+The import package moved under `src/g`, with CI and docs paths updated to match. This keeps installed-package behavior closer to what tests exercise.
 
-- Initial [doctests] support added, via #2
+#### Early lint rule coverage (#4, #5)
 
-  [doctests]: https://docs.python.org/3/library/doctest.html
+The development stack added flake8-bugbear and flake8-comprehensions, giving the small codebase better checks for common Python mistakes and simplification opportunities.
 
-- Initial [mypy] validation, via #2, including `--strict` typings
+## g 0.0.1 (2022-08-17)
 
-  [mypy]: https://github.com/python/mypy
+g 0.0.1 establishes the first real validation baseline for the project. The release adds strict typing, doctests, pytest configuration, and more reliable CI behavior around dependency caching and docs publishing.
 
-- CI (tests, docs): Improve caching of python dependencies via
-  `action/setup-python`'s v3/4's new poetry caching, via #2
+### Development
 
-- CI (docs): Skip if no `PUBLISH` condition triggered, via #2
+#### Strict typing and doctest coverage (#2)
+
+The project enabled mypy, moved it to strict mode, and added doctest execution for documentation examples. The first typing pass annotated the package and tests so regressions could be caught by CI.
+
+#### Faster and narrower CI (#2)
+
+GitHub Actions switched to the newer `actions/setup-python` Poetry cache support, and docs publishing now runs only when the publish condition is triggered. Pytest also gained explicit test paths so collection avoids local virtualenv directories.
+
+#### Formatting baseline
+
+The codebase was formatted with Black, development package pins were refreshed, and local version files such as `.tool-versions` and `.python-version` were added for reproducible contributor setup.
 
 ## g 0.0.0 (2022-02-26)
 
+g 0.0.0 is the initial project scaffold. It sets up the CLI package, documentation skeleton, and release infrastructure that later versions refine.
+
 ### Documentation
 
-- sphinx, furo theme, sphinx-autobuild
+The first docs site used Sphinx, the Furo theme, and `sphinx-autobuild` for local authoring.
 
 ### Development
 
-- Setup CI, codecov, cloudfront, s3
+Initial CI, Codecov, S3, and CloudFront deployment plumbing landed with the package scaffold.
 
 <!---
 .. vim: set filetype=markdown:

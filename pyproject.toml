@@ -59,9 +59,9 @@ dev = [
   # Docs
   "aafigure",
   "pillow",
-  "gp-sphinx==0.0.1a27",
-  "sphinx-autodoc-argparse==0.0.1a27",
-  "sphinx-autodoc-api-style==0.0.1a27",
+  "gp-sphinx==0.0.1a28",
+  "sphinx-autodoc-argparse==0.0.1a28",
+  "sphinx-autodoc-api-style==0.0.1a28",
   "gp-libs",
   "sphinx-autobuild",
   # Testing
@@ -85,9 +85,9 @@ dev = [
 docs = [
   "aafigure",
   "pillow",
-  "gp-sphinx==0.0.1a27",
-  "sphinx-autodoc-argparse==0.0.1a27",
-  "sphinx-autodoc-api-style==0.0.1a27",
+  "gp-sphinx==0.0.1a28",
+  "sphinx-autodoc-argparse==0.0.1a28",
+  "sphinx-autodoc-api-style==0.0.1a28",
   "gp-libs",
   "sphinx-autobuild",
 ]

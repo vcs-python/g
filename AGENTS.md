@@ -212,6 +212,35 @@ Assert on `caplog.records` attributes, not string matching on `caplog.text`:
 
 ### Git Commit Standards
 
+Format commit messages as:
+```
+Scope(type[detail]): concise description
+
+why: Explanation of necessity or impact.
+
+what:
+- Specific technical changes made
+- Focused on a single topic
+```
+
+Keep the subject ≤50 chars (excluding any trailing `(#NN)` PR ref); wrap
+body lines at ≤72 chars. Separate the `why:` and `what:` blocks with a
+blank line.
+
+Common commit types:
+- **feat**: New features or enhancements
+- **fix**: Bug fixes
+- **refactor**: Code restructuring without functional change
+- **docs**: Documentation updates
+- **chore**: Maintenance (dependencies, tooling, config)
+- **test**: Test-related updates
+- **style**: Code style and formatting
+- **py(deps)**: Dependencies
+- **py(deps[dev])**: Dev Dependencies
+- **ai(rules[AGENTS])**: AI rule updates
+- **ai(claude[rules])**: Claude Code rules (CLAUDE.md)
+- **ai(claude[command])**: Claude Code command changes
+
 #### Release commits
 
 Never create tags. Never push tags. The user handles tagging and tag

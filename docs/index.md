@@ -46,7 +46,23 @@ See {doc}`quickstart` for all installation methods and first steps.
 $ g status
 ```
 
-Inside a git repo this runs `git status`; inside an svn checkout it runs `svn status`; inside a mercurial repo it runs `hg status`.
+Inside a git repo, that is equivalent to:
+
+```console
+$ git status
+```
+
+Inside an svn checkout:
+
+```console
+$ svn status
+```
+
+Inside a mercurial repo:
+
+```console
+$ hg status
+```
 
 [Git]: https://git-scm.com/
 [Mercurial]: https://www.mercurial-scm.org/

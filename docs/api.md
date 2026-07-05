@@ -4,7 +4,8 @@ Most users do not need this page. Start with {doc}`quickstart` or
 {doc}`cli/index` if you only want the command-line wrapper.
 
 ```{note}
-These APIs are private and can break between versions. If you want to use them directly, file an issue on the tracker.
+These APIs are private and can break between versions. If you want to use them
+directly, file an issue on the [tracker].
 ```
 
 ```{eval-rst}
@@ -13,3 +14,5 @@ These APIs are private and can break between versions. If you want to use them d
    :show-inheritance:
    :undoc-members:
 ```
+
+[tracker]: https://github.com/vcs-python/g/issues

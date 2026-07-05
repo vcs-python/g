@@ -40,8 +40,17 @@ $ make test
 
 ## Automatically run tests on file save
 
-1. `make start` (via [pytest-watcher])
-2. `make watch_test` (requires installing [entr(1)])
+Run tests once, then keep watching with [pytest-watcher]:
+
+```console
+$ make start
+```
+
+Watch through [entr(1)] if you have it installed:
+
+```console
+$ make watch_test
+```
 
 [pytest-watcher]: https://github.com/olzhasar/pytest-watcher
 
@@ -52,22 +61,62 @@ Default preview server: http://localhost:8034
 [sphinx-autobuild] builds the docs, watches for file changes, and launches a
 server.
 
-From home directory: `make start_docs`
-From inside `docs/`: `make start`
+From the project root:
+
+```console
+$ make start_docs
+```
+
+From inside `docs/`:
+
+```console
+$ make start
+```
 
 [sphinx-autobuild]: https://github.com/executablebooks/sphinx-autobuild
 
 ### Manual documentation
 
-`cd docs/` and `make html` to build. `make serve` to start http server.
+Enter the docs directory:
 
-Helpers:
-`make build_docs`, `make serve_docs`
+```console
+$ cd docs
+```
 
-Rebuild docs on file change: `make watch_docs` (requires [entr(1)])
+Build the docs:
 
-Rebuild docs and run server via one terminal: `make dev_docs` (requires above, and a
-`make(1)` with `-J` support, e.g. GNU Make)
+```console
+$ make html
+```
+
+Start the HTTP server:
+
+```console
+$ make serve
+```
+
+Project-root helpers run the same docs tasks:
+
+```console
+$ make build_docs
+```
+
+```console
+$ make serve_docs
+```
+
+Rebuild docs on file change with [entr(1)]:
+
+```console
+$ make watch_docs
+```
+
+Rebuild docs and run the server through one terminal when your [GNU Make] has
+`-J` support:
+
+```console
+$ make dev_docs
+```
 
 ## Formatting / Linting
 
@@ -200,6 +249,7 @@ See {doc}`/project/releasing` before preparing a release.
 [uv]: https://github.com/astral-sh/uv
 [entr(1)]: http://eradman.com/entrproject/
 [`entr(1)`]: http://eradman.com/entrproject/
+[GNU Make]: https://www.gnu.org/software/make/
 [ruff format]: https://docs.astral.sh/ruff/formatter/
 [ruff]: https://ruff.rs
 [mypy]: http://mypy-lang.org/

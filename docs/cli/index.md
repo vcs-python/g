@@ -30,7 +30,8 @@ When you run `g`, it:
 2. Invokes the corresponding VCS (`git`, `svn`, or `hg`) with your arguments
 3. Exits after the command completes
 
-**Note:** `--version`/`-V` is handled by g itself rather than passed to the VCS.
+**Note:** {argparse:option}`--version <g --version>`/{argparse:option}`-V <g -V>`
+is handled by g itself rather than passed to the VCS.
 
 ## Usage examples
 

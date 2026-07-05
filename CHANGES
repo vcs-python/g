@@ -42,17 +42,17 @@ g 0.0.10 turns g's documentation into a usable CLI reference and moves the docs 
 
 ### What's new
 
-#### `g --version` / `g -V` report g's version (#46)
+#### {argparse:option}`g --version` / {argparse:option}`g -V` report g's version (#46)
 
-`g --version` and `g -V` now print g's installed version instead of forwarding those flags to `git`, `svn`, or `hg`. This gives users a direct way to confirm which wrapper version is on `PATH` while keeping the normal proxy behavior unchanged for VCS commands.
+{argparse:option}`g --version` and {argparse:option}`g -V` now print g's installed version instead of forwarding those flags to `git`, `svn`, or `hg`. This gives users a direct way to confirm which wrapper version is on `PATH` while keeping the normal proxy behavior unchanged for VCS commands.
 
 The implementation preserves the existing {func}`g.run` test hook: in test mode the version path returns cleanly instead of exiting through {mod}`argparse`, so the behavior can be asserted without special subprocess handling.
 
 #### First-party CLI reference page (#46)
 
-The new {doc}`cli/index` page explains g's repository detection flow, shows command equivalence examples, and renders {func}`g.create_parser` through the argparse documentation extension. Argument sections now have stable anchors, so users can link directly to the version flags or pass-through argument reference.
+The new {doc}`cli/index` page explains g's repository detection flow, shows command equivalence examples, and renders {func}`g.create_parser` through the argparse documentation extension. Argument sections now have stable anchors, so users can link directly to the {argparse:option}`version flags <g --version>` or {argparse:positional}`pass-through argument reference <g vcs_args>`.
 
-The CLI docs also clarify the one exception to g's pass-through model: `--version` and `-V` are handled by g itself, while the remaining arguments are sent to the detected VCS command.
+The CLI docs also clarify the one exception to g's pass-through model: {argparse:option}`--version <g --version>` and {argparse:option}`-V <g -V>` are handled by g itself, while the remaining arguments are sent to the detected VCS command.
 
 #### Documentation frontend refresh (#50, #51)
 
@@ -80,7 +80,7 @@ of lines of local documentation plumbing.
 ### Fixes
 
 - The CLI documentation cards now use reference links instead of URL-fragment options, avoiding MyST directive parsing warnings in grid cards (#54).
-- The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated `usage` anchor (#54).
+- The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated {ref}`usage` anchor (#54).
 - Light and dark mode CSS for argparse metadata and header links now handles Furo's automatic theme mode correctly (#46).
 
 ### Documentation
@@ -100,13 +100,13 @@ matching reference material.
 
 ## g 0.0.9 (2026-01-24)
 
-g 0.0.9 hardens release and documentation publishing. The project no longer relies on long-lived PyPI or AWS secrets for the main publishing paths, and the release job now participates in PyPI's trusted-publishing and attestation flow.
+g 0.0.9 hardens release and documentation publishing. The project no longer relies on long-lived [PyPI](https://pypi.org/) or [AWS](https://aws.amazon.com/) secrets for the main publishing paths, and the release job now participates in PyPI's trusted-publishing and attestation flow.
 
 ### What's new
 
-#### PyPI Trusted Publisher release flow (#43)
+#### Trusted Publisher release flow (#43)
 
-Package publishing moved from stored API credentials to PyPI Trusted Publisher via [GitHub Actions](https://docs.github.com/actions) OIDC. The release workflow requests `id-token` and attestation permissions, publishes without embedding a PyPI token in repository secrets, and fixes the deprecated `skip_existing` input name along the way.
+Package publishing moved from stored API credentials to [PyPI Trusted Publisher](https://docs.pypi.org/trusted-publishers/) via [GitHub Actions](https://docs.github.com/actions) [OIDC](https://openid.net/developers/how-connect-works/). The release workflow requests `id-token` and attestation permissions, publishes without embedding a PyPI token in repository secrets, and fixes the deprecated `skip_existing` input name along the way.
 
 #### OIDC-backed documentation deployment
 
@@ -119,7 +119,7 @@ Documentation deployment moved to AWS OIDC authentication and the [AWS CLI](http
 
 ## g 0.0.8 (2025-11-01)
 
-g 0.0.8 updates the supported Python window for current runtimes. Python 3.9 support is removed after end of life, and Python 3.14 is added to the classifiers, test matrix, and docs build path.
+g 0.0.8 updates the supported [Python](https://www.python.org/) window for current runtimes. Python 3.9 support is removed after end of life, and Python 3.14 is added to the classifiers, test matrix, and docs build path.
 
 ### Breaking changes
 
@@ -213,15 +213,15 @@ g 0.0.3 tightens the development harness around the small CLI wrapper. The relea
 
 ### Documentation
 
-#### Docstrings and pydocstyle enforcement (#18)
+#### Docstring style enforcement (#18)
 
-Ruff now enforces pydocstyle with the NumPy convention, and the public modules, functions, tests, and docs configuration were updated with compliant docstrings. This makes the API documentation and doctest surface less dependent on undocumented behavior.
+Ruff now enforces [pydocstyle](https://www.pydocstyle.org/) with the [NumPy](https://numpydoc.readthedocs.io/en/latest/format.html) convention, and the public modules, functions, tests, and docs configuration were updated with compliant docstrings. This makes the API documentation and doctest surface less dependent on undocumented behavior.
 
 ### Development
 
-#### Pytest and Poetry configuration cleanup (#14)
+#### Test and packaging configuration cleanup (#14)
 
-Pytest configuration moved into `pyproject.toml`, and Poetry development dependencies moved from extras into proper dependency groups. That layout matches Poetry's current model and keeps test configuration next to the rest of the project metadata.
+[Pytest](https://docs.pytest.org/) configuration moved into `pyproject.toml`, and Poetry development dependencies moved from extras into proper dependency groups. That layout matches Poetry's current model and keeps test configuration next to the rest of the project metadata.
 
 #### Ruff replaces the older formatting and lint stack (#11, #17)
 
@@ -251,7 +251,7 @@ The import package moved under `src/g`, with CI and docs paths updated to match.
 
 #### Early lint rule coverage (#4, #5)
 
-The development stack added flake8-bugbear and flake8-comprehensions, giving the small codebase better checks for common Python mistakes and simplification opportunities.
+The development stack added [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) and [flake8-comprehensions](https://github.com/adamchainz/flake8-comprehensions), giving the small codebase better checks for common Python mistakes and simplification opportunities.
 
 ## g 0.0.1 (2022-08-17)
 
@@ -281,7 +281,7 @@ The first docs site used Sphinx, the Furo theme, and `sphinx-autobuild` for loca
 
 ### Development
 
-Initial CI, Codecov, S3, and [CloudFront](https://aws.amazon.com/cloudfront/) deployment plumbing landed with the package scaffold.
+Initial CI, [Codecov](https://about.codecov.io/), [S3](https://aws.amazon.com/s3/), and [CloudFront](https://aws.amazon.com/cloudfront/) deployment plumbing landed with the package scaffold.
 
 <!---
 .. vim: set filetype=markdown:

@@ -72,6 +72,16 @@ The API page now uses card-style autodoc signatures and badge styling from `sphi
 - The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated `usage` anchor (#54).
 - Light and dark mode CSS for argparse metadata and header links now handles Furo's automatic theme mode correctly (#46).
 
+### Documentation
+
+#### Clearer paths through the documentation (#61)
+
+The docs now guide readers from install to first command, CLI behavior, or
+contributor material without requiring them to understand g's internals first.
+Command examples are easier to scan one action at a time, and cross-links from
+release notes, API details, and project pages take readers directly to the
+matching reference material.
+
 ### Development
 
 - Root `conftest.py` remains type-checked while the temporary docs-extension mypy path excludes only the extension-local `docs/_ext/conftest.py` case that caused duplicate module discovery (#46).

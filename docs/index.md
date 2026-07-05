@@ -37,7 +37,7 @@ $ pip install --user g
 $ uv tool install g
 ```
 
-See [Quickstart](quickstart.md) for all installation methods and first steps.
+See {doc}`quickstart` for all installation methods and first steps.
 
 ## At a glance
 

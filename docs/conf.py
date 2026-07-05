@@ -36,8 +36,8 @@ conf = merge_sphinx_config(
         "sphinx_autodoc_argparse.exemplar",
     ],
     intersphinx_mapping={
-        "py": ("https://docs.python.org/", None),
-        "libvcs": ("http://libvcs.git-pull.com/", None),
+        "py": ("https://docs.python.org/3/", None),
+        "libvcs": ("https://libvcs.git-pull.com/", None),
     },
     linkcode_resolve=make_linkcode_resolve(g, about["__github__"]),
     html_favicon="_static/favicon.ico",

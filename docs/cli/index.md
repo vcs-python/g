@@ -39,10 +39,22 @@ $ g status
 
 Is equivalent to:
 
+In a git repo:
+
 ```console
-$ git status  # if in a git repo
-$ svn status  # if in an svn repo
-$ hg status   # if in an hg repo
+$ git status
+```
+
+In an svn repo:
+
+```console
+$ svn status
+```
+
+In an hg repo:
+
+```console
+$ hg status
 ```
 
 (cli-main)=
@@ -60,8 +72,17 @@ $ hg status   # if in an hg repo
 
 ```console
 $ g status
+```
+
+```console
 $ g commit -m "Fix bug"
+```
+
+```console
 $ g log --oneline -10
+```
+
+```console
 $ g diff HEAD~1
 ```
 

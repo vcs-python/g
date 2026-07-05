@@ -4,13 +4,14 @@
 
 ## Installation
 
-For latest official version:
+Install g once, then run `g` where you already run `git`, `svn`, or `hg`.
+Use one of these commands for the latest official version.
 
 ```console
 $ pip install --user g
 ```
 
-Or install with [uv](https://docs.astral.sh/uv/):
+Or install it as a [uv] tool:
 
 ```console
 $ uv tool install g
@@ -28,13 +29,13 @@ Run g once without installing globally:
 $ uvx g
 ```
 
-Upgrading:
+Upgrade an existing install the same way.
 
 ```console
 $ pip install --user --upgrade g
 ```
 
-Or with uv:
+With [uv]:
 
 ```console
 $ uv tool upgrade g
@@ -62,7 +63,12 @@ In their versions you will see notification like `a1`, `b1`, and `rc1`, respecti
 
   ```console
   $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
-  // Usage: g@next --help
+  ```
+
+  Then use the suffixed command:
+
+  ```console
+  $ g@next --help
   ```
 
 - [uv tool install][uv-tools]\:
@@ -83,7 +89,7 @@ In their versions you will see notification like `a1`, `b1`, and `rc1`, respecti
   $ uvx --from 'g' --prerelease allow g
   ```
 
-via trunk (can break easily):
+For unreleased trunk builds, expect breakage:
 
 - [pip]\:
 

@@ -1,10 +1,11 @@
 # Development
 
-[uv] is a required package to develop.
+Use this page when you want to change g itself. If you only want to install and
+run the command, start with {doc}`/quickstart`.
 
 ## Bootstrap the project
 
-Install and [git] and [uv]
+Install [git] and [uv].
 
 Clone:
 
@@ -27,9 +28,15 @@ $ uv sync --all-extras --dev
 
 ## Tests
 
-`uv run py.test`
+```console
+$ uv run py.test
+```
 
-Helpers: `make test`
+The Makefile wrapper runs the same test command.
+
+```console
+$ make test
+```
 
 ## Automatically run tests on file save
 
@@ -42,14 +49,15 @@ Helpers: `make test`
 
 Default preview server: http://localhost:8034
 
-[sphinx-autobuild] will automatically build the docs, watch for file changes and launch a server.
+[sphinx-autobuild] builds the docs, watches for file changes, and launches a
+server.
 
 From home directory: `make start_docs`
 From inside `docs/`: `make start`
 
 [sphinx-autobuild]: https://github.com/executablebooks/sphinx-autobuild
 
-### Manual documentation (the hard way)
+### Manual documentation
 
 `cd docs/` and `make html` to build. `make serve` to start http server.
 
@@ -72,10 +80,10 @@ The project uses [ruff] to handle formatting, sorting imports and linting.
 uv:
 
 ```console
-$ uv run ruff
+$ uv run ruff check .
 ```
 
-If you setup manually:
+If you set up manually:
 
 ```console
 $ ruff check .
@@ -109,7 +117,7 @@ uv:
 $ uv run ruff check . --fix
 ```
 
-If you setup manually:
+If you set up manually:
 
 ```console
 $ ruff check . --fix
@@ -119,7 +127,7 @@ $ ruff check . --fix
 
 #### ruff format
 
-[ruff format] is used for formatting.
+Use [ruff format] for formatting.
 
 ````{tab} Command
 
@@ -129,7 +137,7 @@ uv:
 $ uv run ruff format .
 ```
 
-If you setup manually:
+If you set up manually:
 
 ```console
 $ ruff format .
@@ -147,7 +155,7 @@ $ make ruff_format
 
 ### mypy
 
-[mypy] is used for static type checking.
+Use [mypy] for static type checking.
 
 ````{tab} Command
 
@@ -157,7 +165,7 @@ uv:
 $ uv run mypy .
 ```
 
-If you setup manually:
+If you set up manually:
 
 ```console
 $ mypy .
@@ -185,14 +193,9 @@ requires [`entr(1)`].
 ## Releasing
 
 [uv] handles virtualenv creation, package requirements, versioning,
-building, and publishing. Therefore there is no setup.py or requirements files.
+building, and publishing. There is no `setup.py` or requirements file.
 
-Update `__version__` in `__about__.py` and `pyproject.toml`::
-
-    git commit -m 'build(g): Tag v0.1.1'
-    git tag v0.1.1
-    git push
-    git push --tags
+See {doc}`/project/releasing` before preparing a release.
 
 [uv]: https://github.com/astral-sh/uv
 [entr(1)]: http://eradman.com/entrproject/

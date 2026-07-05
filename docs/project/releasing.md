@@ -2,22 +2,29 @@
 
 ## Release Process
 
-Releases are triggered by git tags and published to PyPI via OIDC trusted publishing.
+Use this page when you are preparing a g release. Tags trigger publishing to
+PyPI via OIDC trusted publishing, so create and push them only when you intend
+to publish.
 
 1. Update `CHANGES` with the release notes
 
-2. Bump version in `src/g/__about__.py` (or wherever version is defined -- check pyproject.toml)
+2. Bump the version in `src/g/__about__.py` and `pyproject.toml`
 
-3. Tag:
+3. Commit the release files with the subject `Tag v<version>`
+
+4. Tag:
 
    ```console
    $ git tag v<version>
    ```
 
-4. Push:
+5. Push the branch and tag:
 
    ```console
    $ git push && git push --tags
    ```
 
-5. CI builds and publishes to PyPI automatically
+6. CI builds and publishes to PyPI automatically
+
+For AI agents: do not create or push tags unless the user explicitly asks.
+Prepare the release files and commit only.

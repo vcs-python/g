@@ -1,6 +1,6 @@
 # Changelog
 
-To install the unreleased g version, see [developmental releases](https://g.git-pull.com/quickstart.html#developmental-releases).
+To install the unreleased g version, see {ref}`developmental-releases`.
 
 [pip](https://pip.pypa.io/en/stable/):
 
@@ -12,7 +12,12 @@ $ pip install --user --upgrade --pre g
 
 ```console
 $ pipx install --suffix=@next 'g' --pip-args '\--pre' --force
-// Usage: g@next --help
+```
+
+Then use the suffixed command:
+
+```console
+$ g@next --help
 ```
 
 [uv](https://docs.astral.sh/uv/getting-started/features/#python-versions):
@@ -41,7 +46,7 @@ g 0.0.10 turns g's documentation into a usable CLI reference and moves the docs 
 
 `g --version` and `g -V` now print g's installed version instead of forwarding those flags to `git`, `svn`, or `hg`. This gives users a direct way to confirm which wrapper version is on `PATH` while keeping the normal proxy behavior unchanged for VCS commands.
 
-The implementation preserves the existing {func}`g.run` test hook: in test mode the version path returns cleanly instead of exiting through `argparse`, so the behavior can be asserted without special subprocess handling.
+The implementation preserves the existing {func}`g.run` test hook: in test mode the version path returns cleanly instead of exiting through {mod}`argparse`, so the behavior can be asserted without special subprocess handling.
 
 #### First-party CLI reference page (#46)
 
@@ -66,6 +71,16 @@ The API page now uses card-style autodoc signatures and badge styling from `sphi
 - The CLI documentation cards now use reference links instead of URL-fragment options, avoiding MyST directive parsing warnings in grid cards (#54).
 - The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated `usage` anchor (#54).
 - Light and dark mode CSS for argparse metadata and header links now handles Furo's automatic theme mode correctly (#46).
+
+### Documentation
+
+#### Clearer paths through the documentation (#61)
+
+The docs now guide readers from install to first command, CLI behavior, or
+contributor material without requiring them to understand g's internals first.
+Command examples are easier to scan one action at a time, and cross-links from
+release notes, API details, and project pages take readers directly to the
+matching reference material.
 
 ### Development
 
@@ -149,13 +164,13 @@ g 0.0.5 fixes the main user-facing failure mode outside a repository. Running `g
 
 ### Fixes
 
-#### Running outside a VCS directory no longer raises `AssertionError` (#24)
+#### Running outside a VCS directory no longer raises {exc}`AssertionError` (#24)
 
 When no `.git`, `.svn`, or `.hg` marker is found while walking upward from the current directory, g now reports that no VCS was found and returns without trying to spawn a subprocess. The test suite covers the non-repository case directly.
 
 ### Development
 
-The CLI test fixtures were rewritten into typed `NamedTuple` records, and the `G_IS_TEST` environment flag remains the path for asserting subprocess behavior without leaking `Popen` objects into user output (#24).
+The CLI test fixtures were rewritten into typed {class}`typing.NamedTuple` records, and the `G_IS_TEST` environment flag remains the path for asserting subprocess behavior without leaking {class}`subprocess.Popen` objects into user output (#24).
 
 ## g 0.0.4 (2024-03-24)
 
@@ -177,11 +192,11 @@ Poetry moved from `1.7.1` to `1.8.1`, and the CI helper actions were updated to 
 
 ## g 0.0.3 (2023-12-09)
 
-g 0.0.3 tightens the development harness around the small CLI wrapper. The release moves more configuration into `pyproject.toml`, strengthens docs and lint expectations, and fixes the visible `Popen` repr that could appear after running `g`.
+g 0.0.3 tightens the development harness around the small CLI wrapper. The release moves more configuration into `pyproject.toml`, strengthens docs and lint expectations, and fixes the visible {class}`subprocess.Popen` repr that could appear after running `g`.
 
 ### Fixes
 
-#### `g` no longer prints a `Popen` representation after commands (#19)
+#### `g` no longer prints a {class}`subprocess.Popen` representation after commands (#19)
 
 {func}`g.run` now returns the subprocess only when `G_IS_TEST` is set. Normal CLI usage no longer appends output such as `<Popen: returncode: 1 args: ['git']>` after the delegated VCS command.
 

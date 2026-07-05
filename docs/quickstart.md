@@ -4,7 +4,8 @@
 
 ## Installation
 
-Install g once, then run `g` where you already run `git`, `svn`, or `hg`.
+Install g once, then run `g` where you already run [Git], [Subversion], or
+[Mercurial].
 Use one of these commands for the latest official version.
 
 ```console
@@ -122,3 +123,6 @@ For unreleased trunk builds, expect breakage:
 [uv]: https://docs.astral.sh/uv/
 [uv-tools]: https://docs.astral.sh/uv/concepts/tools/
 [uvx]: https://docs.astral.sh/uv/guides/tools/
+[Git]: https://git-scm.com/
+[Mercurial]: https://www.mercurial-scm.org/
+[Subversion]: https://subversion.apache.org/

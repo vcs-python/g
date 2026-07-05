@@ -5,7 +5,7 @@ expects.
 
 ## Formatting
 
-g uses [ruff](https://github.com/astral-sh/ruff) for linting and formatting.
+Run [ruff](https://github.com/astral-sh/ruff) before committing Python changes.
 
 ```console
 $ uv run ruff check . --fix
@@ -17,7 +17,7 @@ $ uv run ruff format .
 
 ## Type Checking
 
-[mypy](https://mypy-lang.org/) is used for static type checking.
+Run [mypy](https://mypy-lang.org/) for static type checking.
 
 ```console
 $ uv run mypy .

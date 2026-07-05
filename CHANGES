@@ -62,9 +62,20 @@ The frontend gained self-hosted IBM Plex fonts, fallback metrics to avoid text r
 
 #### Shared gp-sphinx documentation stack (#52, #53, #54, #55)
 
-g now consumes the published gp-sphinx package set instead of carrying repo-local Sphinx extensions, templates, custom CSS, and JavaScript. The shared stack provides the Furo-derived theme layer, argparse documentation support, font handling, API presentation helpers, and linkcode defaults in one place.
+g now consumes the published gp-sphinx package set instead of carrying repo-local
+[Sphinx](https://www.sphinx-doc.org/) extensions, templates, custom CSS, and
+JavaScript. The shared stack provides the [Furo](https://pradyunsg.me/furo/)-derived
+theme layer, argparse documentation support, font handling, API presentation
+helpers, and linkcode defaults in one place.
 
-The API page now uses card-style autodoc signatures and badge styling from `sphinx-autodoc-api-style`; the CLI reference benefits from the argparse domain and duplicate-label fixes; and the later `gp-furo-theme` / `sphinx-vite-builder` consolidation moves theme assets into a wheel-backed Vite pipeline. Downstream effect: g stays aligned with the gp-libs docs platform while deleting thousands of lines of local documentation plumbing.
+The API page now uses card-style autodoc signatures and badge styling from
+[`sphinx-autodoc-api-style`](https://pypi.org/project/sphinx-autodoc-api-style/);
+the CLI reference benefits from the argparse domain and duplicate-label fixes;
+and the later [`gp-furo-theme`](https://pypi.org/project/gp-furo-theme/) /
+[`sphinx-vite-builder`](https://pypi.org/project/sphinx-vite-builder/)
+consolidation moves theme assets into a wheel-backed Vite pipeline. Downstream
+effect: g stays aligned with the gp-libs docs platform while deleting thousands
+of lines of local documentation plumbing.
 
 ### Fixes
 
@@ -84,7 +95,7 @@ matching reference material.
 
 ### Development
 
-- Root `conftest.py` remains type-checked while the temporary docs-extension mypy path excludes only the extension-local `docs/_ext/conftest.py` case that caused duplicate module discovery (#46).
+- Root `conftest.py` remains type-checked while the temporary docs-extension [mypy](https://mypy-lang.org/) path excludes only the extension-local `docs/_ext/conftest.py` case that caused duplicate module discovery (#46).
 - The docs dependency pins track gp-sphinx through `0.0.1a17`, including the `exclude-newer` whitelist needed for the git-pull package family during coordinated pre-release work (#55).
 
 ## g 0.0.9 (2026-01-24)
@@ -95,11 +106,11 @@ g 0.0.9 hardens release and documentation publishing. The project no longer reli
 
 #### PyPI Trusted Publisher release flow (#43)
 
-Package publishing moved from stored API credentials to PyPI Trusted Publisher via GitHub Actions OIDC. The release workflow requests `id-token` and attestation permissions, publishes without embedding a PyPI token in repository secrets, and fixes the deprecated `skip_existing` input name along the way.
+Package publishing moved from stored API credentials to PyPI Trusted Publisher via [GitHub Actions](https://docs.github.com/actions) OIDC. The release workflow requests `id-token` and attestation permissions, publishes without embedding a PyPI token in repository secrets, and fixes the deprecated `skip_existing` input name along the way.
 
 #### OIDC-backed documentation deployment
 
-Documentation deployment moved to AWS OIDC authentication and the AWS CLI. That keeps the docs pipeline aligned with the same short-lived-credential model used for package publishing.
+Documentation deployment moved to AWS OIDC authentication and the [AWS CLI](https://aws.amazon.com/cli/). That keeps the docs pipeline aligned with the same short-lived-credential model used for package publishing.
 
 ### Development
 
@@ -114,7 +125,7 @@ g 0.0.8 updates the supported Python window for current runtimes. Python 3.9 sup
 
 #### Minimum Python is now 3.10 (#41)
 
-Python 3.9 reached end-of-life in October 2025, so g now requires Python 3.10 or newer. The package metadata, Trove classifiers, ruff target version, mypy configuration, test workflow, and lockfile were updated together so the declared support window matches CI.
+Python 3.9 reached end-of-life in October 2025, so g now requires Python 3.10 or newer. The package metadata, Trove classifiers, [ruff](https://docs.astral.sh/ruff/) target version, mypy configuration, test workflow, and lockfile were updated together so the declared support window matches CI.
 
 ### What's new
 
@@ -146,7 +157,7 @@ The ruff target version and mypy `python_version` now match Python 3.9, and the 
 
 ## g 0.0.6 (2024-11-26)
 
-g 0.0.6 moves project management from Poetry to uv and switches the build backend to Hatchling. The release is a maintenance release, but it changes how contributors install, lock, build, and publish the project.
+g 0.0.6 moves project management from [Poetry](https://python-poetry.org/) to uv and switches the build backend to [Hatchling](https://hatch.pypa.io/latest/). The release is a maintenance release, but it changes how contributors install, lock, build, and publish the project.
 
 ### Breaking changes
 
@@ -156,7 +167,7 @@ uv is now the package and project manager for g. Development setup uses `uv sync
 
 #### Build backend moves from Poetry to Hatchling (#30)
 
-The package build backend moved from Poetry to [Hatchling](https://hatch.pypa.io/latest/). This aligns g with the newer gp-libs project layout while keeping the package itself small.
+The package build backend moved from Poetry to Hatchling. This aligns g with the newer gp-libs project layout while keeping the package itself small.
 
 ## g 0.0.5 (2024-06-08)
 
@@ -188,7 +199,7 @@ The lint configuration expanded to include additional ruff rule families, includ
 
 #### Poetry and CI dependency maintenance
 
-Poetry moved from `1.7.1` to `1.8.1`, and the CI helper actions were updated to remove warnings and keep CodeQL on GitHub's default configuration.
+Poetry moved from `1.7.1` to `1.8.1`, and the CI helper actions were updated to remove warnings and keep [CodeQL](https://codeql.github.com/) on GitHub's default configuration.
 
 ## g 0.0.3 (2023-12-09)
 
@@ -214,7 +225,7 @@ Pytest configuration moved into `pyproject.toml`, and Poetry development depende
 
 #### Ruff replaces the older formatting and lint stack (#11, #17)
 
-Formatting, import sorting, and most linting moved to ruff, including `ruff format` in place of Black. This removed overlapping tooling while keeping fast local checks for a small CLI package.
+Formatting, import sorting, and most linting moved to ruff, including `ruff format` in place of [Black](https://black.readthedocs.io/). This removed overlapping tooling while keeping fast local checks for a small CLI package.
 
 #### CI and packaging maintenance (#8, #13)
 
@@ -228,9 +239,9 @@ g 0.0.2 moves the package into a standard `src/` layout and adopts the first gp-
 
 #### gp-libs Sphinx helpers replace fragile local docs wiring (#6)
 
-The changelog now renders with `linkify_issues`, and autodoc table-of-contents rendering uses the gp-libs Sphinx helper instead of the previous `sphinx-autoapi` path. The old `sphinx-autoapi` setup was intentionally removed because it was only carrying TOC behavior and had accumulated import-related workarounds.
+The changelog now renders with [`linkify_issues`](https://gp-sphinx.git-pull.com/), and autodoc table-of-contents rendering uses the gp-libs Sphinx helper instead of the previous [`sphinx-autoapi`](https://sphinx-autoapi.readthedocs.io/) path. The old `sphinx-autoapi` setup was intentionally removed because it was only carrying TOC behavior and had accumulated import-related workarounds.
 
-The docs also gained an internal API page backed by `sphinx.ext.autodoc`, which is now the source for API object rendering in the generated site.
+The docs also gained an internal API page backed by [sphinx.ext.autodoc](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html), which is now the source for API object rendering in the generated site.
 
 ### Development
 
@@ -270,7 +281,7 @@ The first docs site used Sphinx, the Furo theme, and `sphinx-autobuild` for loca
 
 ### Development
 
-Initial CI, Codecov, S3, and CloudFront deployment plumbing landed with the package scaffold.
+Initial CI, Codecov, S3, and [CloudFront](https://aws.amazon.com/cloudfront/) deployment plumbing landed with the package scaffold.
 
 <!---
 .. vim: set filetype=markdown:

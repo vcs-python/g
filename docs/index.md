@@ -2,7 +2,8 @@
 
 # g
 
-A tiny CLI wrapper for git, svn, and hg -- auto-detects your repo type and proxies commands.
+A tiny CLI wrapper for [Git], [Subversion], and [Mercurial] -- auto-detects
+your repo type and proxies commands.
 
 ::::{grid} 1 2 3 3
 :gutter: 2 2 3 3
@@ -46,6 +47,10 @@ $ g status
 ```
 
 Inside a git repo this runs `git status`; inside an svn checkout it runs `svn status`; inside a mercurial repo it runs `hg status`.
+
+[Git]: https://git-scm.com/
+[Mercurial]: https://www.mercurial-scm.org/
+[Subversion]: https://subversion.apache.org/
 
 ```{toctree}
 :hidden:

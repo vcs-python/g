@@ -14,12 +14,13 @@ Proxy to your repo's VCS command.
 :::{grid-item-card} Supported VCS
 :link: cli-supported-vcs
 :link-type: ref
-git, svn, and hg detection.
+Repository detection.
 :::
 
 ::::
 
 g is a minimal CLI wrapper that proxies to your current directory's VCS command.
+It detects [Git], [Subversion], and [Mercurial] repositories.
 
 ## How it works
 
@@ -95,3 +96,7 @@ $ g diff HEAD~1
 | `.git`           | `git`       |
 | `.svn`           | `svn`       |
 | `.hg`            | `hg`        |
+
+[Git]: https://git-scm.com/
+[Mercurial]: https://www.mercurial-scm.org/
+[Subversion]: https://subversion.apache.org/

@@ -71,7 +71,7 @@ Rebuild docs and run server via one terminal: `make dev_docs` (requires above, a
 
 ## Formatting / Linting
 
-### ruff
+### Linting and formatting
 
 The project uses [ruff] to handle formatting, sorting imports and linting.
 
@@ -125,7 +125,7 @@ $ ruff check . --fix
 
 ````
 
-#### ruff format
+#### Code formatting
 
 Use [ruff format] for formatting.
 
@@ -153,7 +153,7 @@ $ make ruff_format
 
 ````
 
-### mypy
+### Type checking
 
 Use [mypy] for static type checking.
 

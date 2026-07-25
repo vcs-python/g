@@ -114,6 +114,31 @@ tests/test_cli.py
 - Ruff is the source of truth for lint rules; see `pyproject.toml` for enabled checks (E, F, I, UP, A, B, C4, COM, EM, Q, PTH, SIM, TRY, PERF, RUF, D, FA100).
 - Type checking is strict (`mypy --strict`); favor precise types and avoid `Any` unless necessary.
 
+**Classes with fields** — `NamedTuple`, dataclasses — document every field in
+an `Attributes` section:
+
+```python
+class CommandLineTestFixture(t.NamedTuple):
+    """Test fixture for CLI params, environment, and expected result.
+
+    Attributes
+    ----------
+    test_id : str
+        pytest parametrization id for the case.
+    env : EnvFlag
+        Directory state to simulate before invoking the CLI.
+    argv_args : list[str]
+        Arguments passed through to ``g`` on the command line.
+    expect_cmd : str | None
+        VCS command line expected, or ``None`` when none should run.
+    """
+```
+
+Autodoc renders every field whether or not you describe it, so an
+undocumented `NamedTuple` field ships to the API docs as "Alias for field
+number 0" and a dataclass field ships bare. Document all of them — a class
+with three fields and two documented still ships a stub for the third.
+
 ## Logging Standards
 
 These rules guide future logging changes; existing code may not yet conform.

@@ -99,6 +99,7 @@ matching reference material.
 - The docs dependency pins track gp-sphinx through `0.0.1a17`, including the `exclude-newer` whitelist needed for the git-pull package family during coordinated pre-release work (#55).
 - Workflow actions moved to their current major releases: `actions/checkout` v7, `actions/cache` v6, `astral-sh/setup-uv` v9.0.0, `codecov/codecov-action` v7, and `dorny/paths-filter` v4. Workflow behavior is unchanged, though setup-uv no longer prunes the uv cache, so the first run after this repopulates it.
 - Minimum `ruff>=0.16.0` (was unpinned), so contributors and CI share the same lint diagnostics and the [ruff 0.16](https://astral.sh/blog/ruff-v0.16.0) formatting of Python code blocks inside Markdown (#63).
+- Linting runs on ruff's curated default rule set with this project's linters layered on top through `extend-select` instead of replacing it, so the default pylint, flake8-bandit, and flake8-pyi checks now apply; `docs/conf.py` carries a scoped ignore for the `exec` that reads the package's metadata module (#63).
 
 ## g 0.0.9 (2026-01-24)
 

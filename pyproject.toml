@@ -75,7 +75,7 @@ dev = [
   "coverage",
   "pytest-cov",
   # Lint
-  "ruff",
+  "ruff>=0.16.0",
   "mypy",
   # Type stubs
   "types-docutils",
@@ -104,7 +104,7 @@ coverage =[
   "pytest-cov",
 ]
 lint = [
-  "ruff",
+  "ruff>=0.16.0",
   "mypy",
 ]
 
@@ -151,7 +151,10 @@ files = [
 target-version = "py310"
 
 [tool.ruff.lint]
-select = [
+# `select` is deliberately unset: ruff 0.16 enables a curated default rule
+# set, and an explicit `select` would replace it rather than extend it.
+# `extend-select` layers this project's additional linters on top.
+extend-select = [
   "E", # pycodestyle
   "F", # pyflakes
   "I", # isort
@@ -168,7 +171,7 @@ select = [
   "PERF", # Perflint
   "RUF", # Ruff-specific rules
   "D", # pydocstyle
-  "FA100",  # future annotations
+  "FA100", # flake8-future-annotations
 ]
 ignore = [
   "COM812", # missing trailing comma, ruff format conflict
@@ -193,6 +196,12 @@ required-imports = [
 
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401"]
+"docs/conf.py" = [
+  # Sphinx collects the project's title, copyright, and URLs by exec'ing the
+  # package's `__about__.py` into a dict; `g/__init__.py` re-exports only
+  # `__version__`. The input is a tracked file here, not user data.
+  "S102",
+]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"

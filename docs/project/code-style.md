@@ -1,24 +1,7 @@
 # Code Style
 
-Use this page when you are changing g itself and want the same local checks CI
-expects.
-
-## Formatting
-
-Run [ruff](https://github.com/astral-sh/ruff) before committing Python changes.
-
-```console
-$ uv run ruff check . --fix
-```
-
-```console
-$ uv run ruff format .
-```
-
-## Type Checking
-
-Run [mypy](https://mypy-lang.org/) for static type checking.
-
-```console
-$ uv run mypy .
-```
+This page split in two. The formatting, linting, and type-checking commands
+now live in
+[.github/CONTRIBUTING.md](https://github.com/vcs-python/g/blob/master/.github/CONTRIBUTING.md#the-gates)
+("The gates"). Docstring and comment conventions now live in
+[.github/WRITING.md](https://github.com/vcs-python/g/blob/master/.github/WRITING.md#docstrings).

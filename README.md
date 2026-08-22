@@ -8,8 +8,11 @@ Passthrough to your current directory's VCS.
 [![Code Coverage](https://codecov.io/gh/vcs-python/g/branch/master/graph/badge.svg)](https://codecov.io/gh/vcs-python/g)
 [![License](https://img.shields.io/github/license/vcs-python/g.svg)](https://github.com/vcs-python/g/blob/master/LICENSE)
 
-Shortcut / powertool for developers to access current repos' VCS, whether it's
-git, subversion (`svn`), or mercurial (`hg`).
+A command-line shortcut that runs your current directory's VCS command,
+whether it's git, subversion (`svn`), or mercurial (`hg`). Requires Python
+3.10 or newer.
+
+## Install
 
 ```console
 $ pip install --user g
@@ -39,7 +42,7 @@ $ g
 
 ### Developmental releases
 
-You can test the unpublished version of g before its released.
+You can test the unpublished version of g before its release.
 
 - [pip](https://pip.pypa.io/en/stable/):
 
@@ -50,15 +53,15 @@ You can test the unpublished version of g before its released.
 - [uv](https://docs.astral.sh/uv/):
 
   ```console
-  $ uv tool install g
+  $ uv tool install --prerelease=allow g
   ```
 
   ```console
-  $ uv add g
+  $ uv add g --prerelease allow
   ```
 
   ```console
-  $ uvx g
+  $ uvx --from 'g' --prerelease allow g
   ```
 
 - [pipx](https://pypa.github.io/pipx/docs/):
@@ -69,11 +72,28 @@ You can test the unpublished version of g before its released.
 
   Then use `g@next --help`.
 
-# Credits
+## Usage
+
+```console
+$ g status
+```
+
+Inside a git checkout, that runs `git status`; inside svn, `svn status`;
+inside mercurial, `hg status`. g intercepts only `-V`/`--version` —
+everything else, including `-h`/`--help`, forwards straight to the detected
+VCS. The VCS's own stdout and stderr print through unchanged, but g's exit
+status does not mirror the wrapped command's: a completed run always exits
+`0`. Outside a VCS directory, g prints `No VCS found in current
+directory.` to stderr and stops.
+
+Full detection order and command reference:
+<https://g.git-pull.com/cli/index.html>.
+
+## Credits
 
 2021-12-05: Thanks to [John Shanahan](https://github.com/shanahanjrs) ([@\_shanahanjrs](https://twitter.com/_shanahanjrs)) for giving g use [g](https://pypi.org/project/g/)
 
-# Donations
+## Donations
 
 Your donations fund development of new features, testing and support.
 Your money will go directly to maintenance and development of the
@@ -82,9 +102,9 @@ right for the value you get out of the project.
 
 See donation options at <https://tony.sh/support.html>.
 
-# More information
+## More information
 
-- Python support: >= 3.9, pypy
+- Python support: >= 3.10
 - VCS supported: git(1), svn(1), hg(1)
 - Source: <https://github.com/vcs-python/g>
 - Docs: <https://g.git-pull.com>

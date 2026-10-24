@@ -57,8 +57,6 @@ g = 'g:run'
 [dependency-groups]
 dev = [
   # Docs
-  "aafigure",
-  "pillow",
   "gp-sphinx==0.1.0a39",
   "sphinx-autodoc-argparse==0.1.0a39",
   "sphinx-autodoc-api-style==0.1.0a39",
@@ -83,8 +81,6 @@ dev = [
 ]
 
 docs = [
-  "aafigure",
-  "pillow",
   "gp-sphinx==0.1.0a39",
   "sphinx-autodoc-argparse==0.1.0a39",
   "sphinx-autodoc-api-style==0.1.0a39",

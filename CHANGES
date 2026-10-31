@@ -79,6 +79,7 @@ of lines of local documentation plumbing.
 
 ### Fixes
 
+- `g` now detects git inside linked worktrees and submodules, where `.git` is a file rather than a directory.
 - The CLI documentation cards now use reference links instead of URL-fragment options, avoiding MyST directive parsing warnings in grid cards (#54).
 - The manual CLI "Usage" section was renamed to "Usage examples" so it no longer collides with the argparse-generated {ref}`usage` anchor (#54).
 - Light and dark mode CSS for argparse metadata and header links now handles Furo's automatic theme mode correctly (#46).

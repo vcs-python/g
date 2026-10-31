@@ -42,9 +42,6 @@ stated twice, the file listed above is the one that governs.
   for every change to the public API, CLI, configuration, or output.
 - A passing gate is evidence only once it has been shown capable of
   failing. Pair a new test with a deliberate break that proves it bites.
-- `find_repo_type()` requires a `.git`/`.svn`/`.hg` **directory**; it will
-  not detect a repo from a git worktree checkout, whose top-level `.git` is
-  a file. This is a real limitation, not a bug in a test.
 - Keep this file lean: delete a line whose removal would not cause a
   mistake; push a multi-step procedure into a skill and a path-specific
   rule into a nested `AGENTS.md`.

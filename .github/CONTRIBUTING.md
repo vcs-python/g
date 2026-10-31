@@ -79,12 +79,6 @@ CLI tests invoke real VCS binaries (at minimum `git`) rather than mocking
 the subprocess call; use `tmp_path` and `monkeypatch` to simulate a
 non-repo directory.
 
-`find_repo_type()` requires a `.git`, `.svn`, or `.hg` **directory**. A git
-worktree checkout's top-level `.git` is a file, not a directory, so
-`test_command_line[g-cmd-inside-git-dir]` and its `--help` sibling fail
-there even though nothing is broken. Work from a normal clone (not `git
-worktree add`) to run the full suite green.
-
 When subprocess output seems swallowed, set `G_IS_TEST=1` and call
 `run(wait=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)` to capture
 it for inspection.

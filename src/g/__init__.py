@@ -25,7 +25,9 @@ def find_repo_type(path: pathlib.Path | str) -> str | None:
     """Detect repo type looking upwards."""
     for _path in [*list(pathlib.Path(path).parents), pathlib.Path(path)]:
         for p in _path.iterdir():
-            if p.is_dir() and p.name in vcspath_registry:
+            if p.name not in vcspath_registry:
+                continue
+            if p.is_dir() or (p.name == ".git" and p.is_file()):
                 return vcspath_registry[p.name]
     return None
 

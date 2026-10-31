@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import enum
+import os
 import subprocess
 import typing as t
 from unittest.mock import patch
 
 import pytest
 
-from g import run
+from g import find_repo_type, run
 
 if t.TYPE_CHECKING:
     import pathlib
@@ -132,6 +133,58 @@ def test_command_line(
                 shell=True,
                 stderr=subprocess.STDOUT,
             )
+
+
+@pytest.fixture
+def git_worktree(tmp_path: pathlib.Path) -> pathlib.Path:
+    """Create a linked git worktree, whose top-level ``.git`` is a file."""
+    main = tmp_path / "main"
+    worktree = tmp_path / "worktree"
+    env = {
+        **os.environ,
+        "GIT_AUTHOR_NAME": "g",
+        "GIT_AUTHOR_EMAIL": "g@example.com",
+        "GIT_COMMITTER_NAME": "g",
+        "GIT_COMMITTER_EMAIL": "g@example.com",
+    }
+    main.mkdir()
+    subprocess.run(["git", "init", "-q"], cwd=main, check=True, env=env)
+    subprocess.run(
+        ["git", "commit", "-q", "--allow-empty", "-m", "init"],
+        cwd=main,
+        check=True,
+        env=env,
+    )
+    subprocess.run(
+        ["git", "worktree", "add", "-q", "--detach", str(worktree)],
+        cwd=main,
+        check=True,
+        env=env,
+    )
+    assert (worktree / ".git").is_file()
+    return worktree
+
+
+def test_find_repo_type_git_worktree(git_worktree: pathlib.Path) -> None:
+    """`.git` file of a linked worktree is detected as git."""
+    assert find_repo_type(git_worktree) == "git"
+
+
+def test_command_line_git_worktree(
+    git_worktree: pathlib.Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """`g` proxies to git inside a linked worktree."""
+    from g import sys as gsys
+
+    monkeypatch.chdir(git_worktree)
+    with patch.object(gsys, "argv", ["g", "rev-parse", "--show-toplevel"]):
+        proc = run(wait=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    assert proc is not None
+    assert proc.stdout is not None
+    captured = proc.stdout.read()
+    assert os.fsdecode(captured).strip() == str(git_worktree.resolve())
 
 
 def test_version_output(capsys: pytest.CaptureFixture[str]) -> None:

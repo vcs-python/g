@@ -40,6 +40,12 @@ _Notes on upcoming releases will be added here_
 
 g 0.0.10 turns g's documentation into a usable CLI reference and moves the docs site onto the shared gp-libs documentation platform. The CLI now answers its own version flags, the {doc}`cli/index` page documents how arguments pass through to the detected VCS, and the site picks up the newer [gp-sphinx](https://gp-sphinx.git-pull.com/) rendering stack used across the gp-libs family.
 
+### Breaking changes
+
+#### Python 3.11 is now the minimum
+
+g now requires Python 3.11 or newer. Python 3.10 reached end of life in October 2026.
+
 ### What's new
 
 #### {argparse:option}`g --version` / {argparse:option}`g -V` report g's version (#46)

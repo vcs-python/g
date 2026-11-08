@@ -2,7 +2,7 @@
 name = "g"
 version = "0.0.9"
 description = "cli command to easily sync current directory"
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 authors = [
   {name = "Tony Narlock", email = "tony@git-pull.com"}
 ]
@@ -16,7 +16,6 @@ classifiers = [
   "Operating System :: MacOS :: MacOS X",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -135,7 +134,7 @@ sphinx-ux-badges = false
 
 [tool.mypy]
 strict = true
-python_version = "3.10"
+python_version = "3.11"
 mypy_path = ["src"]
 explicit_package_bases = true
 files = [
@@ -144,7 +143,7 @@ files = [
 ]
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 # `select` is deliberately unset: ruff 0.16 enables a curated default rule

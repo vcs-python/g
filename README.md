@@ -10,7 +10,7 @@ Passthrough to your current directory's VCS.
 
 A command-line shortcut that runs your current directory's VCS command,
 whether it's git, subversion (`svn`), or mercurial (`hg`). Requires Python
-3.10 or newer.
+3.11 or newer.
 
 ## Install
 
@@ -104,7 +104,7 @@ See donation options at <https://tony.sh/support.html>.
 
 ## More information
 
-- Python support: >= 3.10
+- Python support: >= 3.11
 - VCS supported: git(1), svn(1), hg(1)
 - Source: <https://github.com/vcs-python/g>
 - Docs: <https://g.git-pull.com>
